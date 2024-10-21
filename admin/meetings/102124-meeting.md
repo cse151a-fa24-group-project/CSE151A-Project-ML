@@ -15,4 +15,7 @@
 - 10:10: Discuss issues with previous Milestone 1 submission
 - 10:15: Looked over more datasets
 - 10:40: Decided on Family Guy Peter Griffin detection idea
-- 11:00: Wrap-Up
+- 11:00: Wrap-Up, TO-DOs
+  - Contact teaching staff for confirmation
+  - Work on abstract
+    
