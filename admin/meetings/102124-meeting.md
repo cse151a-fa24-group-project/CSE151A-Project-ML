@@ -5,7 +5,7 @@
 - [x] John
 - [x] Hou
 - [x] Ori
-- [ ] Jaewon (Illness)
+- [ ] Jaewon (Illness, attended on standby on Discord)
 
 ## Agenda
 - Revisit Milestone 1 group assignment and choose/elaborate our appropriate datasets
