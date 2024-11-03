@@ -143,10 +143,15 @@ Depending on the extraction methods that each group member used, the image size 
 # Preprocessing
 We found few things to be considered after exploring our data.
 
-1. Image Size
+1. Image Size and Dimensions
+   This will be crucial for a training for a CNN, as we would need to decide on a standard input dimension. The choice of this dimension will be decided based on experimentation; it will be a balance of higher dimensions with increased compute costs but more ability to capture detail, vs lower dimensions with decreased compute costs but less details in the image.
 2. Background Masking
+   For a segmentation task, we could identify the pixels that are peter and pixels that are not peter, but this would be a future step after we can successfuly detect if Peter is within a scene. This would require much more manual work in terms of data generation as it requires identifying the pixels that are Peter.
 3. Cropped Face Image
-4. etc
+   
+    
+5. etc
+
 
 
 
