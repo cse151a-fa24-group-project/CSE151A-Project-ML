@@ -141,6 +141,14 @@ Depending on the extraction methods that each group member used, the image size 
 <br><br>
 
 # Preprocessing
-Uniform Image Size and Dimensions:
+# Preprocessing
+We found few things to be considered after exploring our data.
 
-This will be crucial for a training for a CNN, as we would need to decide on a standard input dimension. The choice of this dimension will be decided based on experimentation; it will be a balance of higher dimensions with increased compute costs but more ability to capture detail, vs lower dimensions with decreased compute costs but less details in the image.
+1. Image Size and Dimensions
+   - This will be crucial for a training for a CNN, as we would need to decide on a standard input dimension. The choice of this dimension will be decided based on experimentation; it will be a balance of higher dimensions with increased compute costs but more ability to capture detail, vs lower dimensions with decreased compute costs but less details in the image.
+2. Background Masking
+   - For a segmentation task, we could identify the pixels that are peter and pixels that are not peter, but this would be a future step after we can successfuly detect if Peter is within a scene. This would require much more manual work in terms of data generation as it requires identifying the pixels that are Peter.
+3. Cropped Face Image
+   - This would involve locating faces of different family guy characters in each frame, and classifying whether a cropped window of a character is Peter or not. This, similarly to background masking would require manual inspection and labelling, and could be a possible future step.
+    
+After considering these potential options, our first approach would just be to take the raw frame, and alter the dimensions to a set 3D matrix for color image. We plan on exploring potential image processing modifications to the image before input into the CNN based on performance changes. These would include how we reduce dimensions and whether we downsample with interpolation, anti-aliasing, etc.
