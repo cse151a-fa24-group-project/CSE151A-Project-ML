@@ -141,7 +141,6 @@ Depending on the extraction methods that each group member used, the image size 
 <br><br>
 
 # Preprocessing
-# Preprocessing
 We found few things to be considered after exploring our data.
 
 1. Image Size and Dimensions
