@@ -140,14 +140,32 @@ Depending on the extraction methods that each group member used, the image size 
 2. 320x240 jpg (from Frame_Extractor.ipynb*)
 <br><br>
 
-# Preprocessing
-We found few things to be considered after exploring our data.
+Preprocessing
 
+
+Image Size and Dimensions
+
+
+Background Masking
+
+
+Cropped Face Images
+
+
+
+
+This preprocessing framework will allow us to iteratively enhance our data preparation as we gain more insights into model performance and data requirements.
+
+# Preprocessing
+In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
+
+## Points to Consider
 1. Image Size and Dimensions
-   - This will be crucial for a training for a CNN, as we would need to decide on a standard input dimension. The choice of this dimension will be decided based on experimentation; it will be a balance of higher dimensions with increased compute costs but more ability to capture detail, vs lower dimensions with decreased compute costs but less details in the image.
+   - Setting a standard input dimension is crucial for our CNN training process. To determine the optimal dimensions, we will experiment with different resolutions, balancing between higher dimensions, which offer more detail but require greater computational power, and lower dimensions, which are computationally efficient but capture less detail. This trade-off will allow us to find an effective compromise between detail and efficiency.
 2. Background Masking
-   - For a segmentation task, we could identify the pixels that are peter and pixels that are not peter, but this would be a future step after we can successfuly detect if Peter is within a scene. This would require much more manual work in terms of data generation as it requires identifying the pixels that are Peter.
+   - For potential future segmentation tasks, we could implement background masking to distinguish between pixels belonging to Peter and those that do not. However, as this approach requires pixel-level annotation, it will involve significant manual work. Therefore, we will consider this option only after we establish reliable frame-level detection of Peter in the scenes.
 3. Cropped Face Image
-   - This would involve locating faces of different family guy characters in each frame, and classifying whether a cropped window of a character is Peter or not. This, similarly to background masking would require manual inspection and labelling, and could be a possible future step.
+   - Another possible enhancement involves detecting and cropping faces of various characters in each frame, followed by classifying whether a cropped character is Peter. Similar to background masking, this approach would require manual labeling and inspection, so we may pursue it in later stages of the project if it proves beneficial.
     
-After considering these potential options, our first approach would just be to take the raw frame, and alter the dimensions to a set 3D matrix for color image. We plan on exploring potential image processing modifications to the image before input into the CNN based on performance changes. These would include how we reduce dimensions and whether we downsample with interpolation, anti-aliasing, etc.
+## Initial Approach
+For our initial model training, we plan to use the raw frames and standardize them to a fixed 3D matrix format for color images. We will explore various image processing techniques to optimize the input, such as resizing with interpolation or anti-aliasing, based on their impact on performance. This straightforward approach will allow us to establish a baseline and later experiment with more advanced preprocessing techniques as needed.
