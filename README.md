@@ -8,6 +8,7 @@
   - [Extraction method](#extraction-method)
   - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
   - [Size of Image](#size-of-image)
+  - [Image Naming Convention](#image-naming-convention)
 - [Preprocessing](#preprocessing)
 
 
