@@ -189,7 +189,9 @@ To download the dataset into Jupyter Notebook from google drive, we used the fol
   print(f"Done, stored in {extract_to}")
   ```
 </details>
+
 Then to access the data, we can directly use the images under each episode folder (under extracted_images folder). Below is the example code snippet of how we access to the number of images in each folder:
+
 <details>
   <summary>Click to Collapse Code</summary>
   
@@ -227,7 +229,9 @@ Then to access the data, we can directly use the images under each episode folde
 
 Finally, these are two plots that show the number of images in each episode and total number of images (with_peter vs. without_peter):
 1. Number of Images in Each Episode (With_Peter vs Without_Peter)
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_each_episode.png" alt="Number of images in each episode" width="400"/>
 2. Total Number of Images Across All Episodes
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_total.png" alt="Number of images total" width="400"/>
 
 # Preprocessing
 In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
