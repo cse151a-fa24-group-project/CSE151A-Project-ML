@@ -5,7 +5,7 @@
 - [x] John
 - [x] Hou
 - [x] Ori
-- [ ] Jaewon (Illness)
+- [ ] Jaewon (Illness, attended on standby on Discord)
 
 ## Agenda
 - Revisit Milestone 1 group assignment and choose/elaborate our appropriate datasets
@@ -18,3 +18,6 @@
 - 11:00: Discussion over whether Kaggle would be the best place to find data.
 - 11:30: Decided on Family Guy Classification task
 - 11:40: Experimented with different ways to generate data
+- 11:50: Wrap-Up, TO-DOs
+  - Contact teaching staff for confirmation
+  - Work on abstract
