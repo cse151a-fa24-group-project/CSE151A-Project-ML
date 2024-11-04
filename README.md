@@ -9,6 +9,7 @@
   - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
   - [Size of Image](#size-of-image)
   - [Image Naming Convention](#image-naming-convention)
+  - [Plot Our Data](#plot-our-data)
 - [Preprocessing](#preprocessing)
 
 
@@ -144,6 +145,89 @@ Depending on the extraction methods that each group member used, the image size 
 ### Image Naming Convention
 Every image will be labeled as SAEBB_###. For example, the 12th extracted frame of Season 5, Episode 5 will be named as S5E05_12.
 
+### Plot Our Data
+To download the dataset into Jupyter Notebook from google drive, we used the following code snippet which uses "**gdown**" library:
+<details>
+  <summary>Click to Collapse Code</summary>
+
+  ```python
+  !pip install gdown
+
+  import os
+  import zipfile
+  import gdown
+  
+  # List of file IDs (from google drive that stores our dataset)
+  file_ids = [
+      '1pF2dgzRh5bv7N6CtnNbxSdTY96-WtscQ',
+      '1_AnxC-HX0cONqzx6iieZ-jVuUfeBGikv',
+      '1NPUlNQ72xjnu0EYWWbThB72UFSsTtrDL',
+      '1qdo1P-FaShwrf8uAtVganaOK1jPpproM',
+      '1EypHEU0fZHWQECoNCxpmgRHWRlsB9_eA',
+      '18-vCtuExrjNObIbwSoskgBf59vOK1Hhv'
+  ]
+  
+  # Folder to store downloaded ZIP files
+  zip_folder = 'zip_files'
+  os.makedirs(zip_folder, exist_ok=True)
+  
+  # Folder to extract all ZIP files
+  extract_to = 'extracted_images'
+  os.makedirs(extract_to, exist_ok=True)
+  
+  # download and extract all ZIP files from our google drive
+  for i, file_id in enumerate(file_ids, 1):
+      zip_path = os.path.join(zip_folder, f'file_{i}.zip') # each ZIP file will be stored as file_#.zip
+      
+      # downloading file from google drive
+      gdown.download(f'https://drive.google.com/uc?id={file_id}', zip_path, quiet=False)
+  
+      # Extract the downloaded ZIP file
+      with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+          zip_ref.extractall(extract_to)
+  
+  print(f"Done, stored in {extract_to}")
+  ```
+</details>
+Then to access the data, we can directly use the images under each episode folder (under extracted_images folder). Below is the example code snippet of how we access to the number of images in each folder:
+<details>
+  <summary>Click to Collapse Code</summary>
+  
+  ```python
+  main_folder = 'extracted_images'
+
+  image_extensions = {'.jpg', '.jpeg', '.png'}
+  
+  image_counts = {}
+  
+  # Loop through each episode folder (e.g., S1E5)
+  for episode_folder in os.listdir(main_folder):
+      episode_path = os.path.join(main_folder, episode_folder)
+  
+      if os.path.isdir(episode_path):
+          image_counts[episode_folder] = {'With_Peter': 0, 'Without_Peter': 0}
+  
+          for subfolder in ['With_Peter', 'Without_Peter']:
+              subfolder_path = os.path.join(episode_path, subfolder)
+  
+              if os.path.isdir(subfolder_path):
+                  image_count = sum(
+                      1 for file_name in os.listdir(subfolder_path)
+                      if os.path.splitext(file_name)[1].lower() in image_extensions
+                  )
+  
+                  image_counts[episode_folder][subfolder] = image_count
+  
+  for episode, counts in image_counts.items():
+      print(f"Episode '{episode}':")
+      print(f"  With_Peter: {counts['With_Peter']} images")
+      print(f"  Without_Peter: {counts['Without_Peter']} images")
+  ```
+</details>
+
+Finally, these are two plots that show the number of images in each episode and total number of images (with_peter vs. without_peter):
+1. Number of Images in Each Episode (With_Peter vs Without_Peter)
+2. Total Number of Images Across All Episodes
 
 # Preprocessing
 In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
