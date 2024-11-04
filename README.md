@@ -144,9 +144,6 @@ Depending on the extraction methods that each group member used, the image size 
 Every image will be labeled as SAEBB_###. For example, the 12th extracted frame of Season 5, Episode 5 will be named as S5E05_12.
 
 
-
-This preprocessing framework will allow us to iteratively enhance our data preparation as we gain more insights into model performance and data requirements.
-
 # Preprocessing
 In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
 
