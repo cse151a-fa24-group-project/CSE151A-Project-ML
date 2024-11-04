@@ -134,23 +134,14 @@ Then we assigned each person one episode to extract frames for our dataset. We u
 2. Absence of Peter Griffin
    <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/without_peter_example.png" alt="Without Peter" width="400"/>
 
-## Size of Image
+### Size of Image
 Depending on the extraction methods that each group member used, the image size varies.
 1. 1440x1080 png (from Video Frame Extractor)
 2. 320x240 jpg (from Frame_Extractor.ipynb*)
 <br><br>
 
-Preprocessing
-
-
-Image Size and Dimensions
-
-
-Background Masking
-
-
-Cropped Face Images
-
+### Image Naming Convention
+Every image will be labeled as SAEBB_###. For example, the 12th extracted frame of Season 5, Episode 5 will be named as S5E05_12.
 
 
 
