@@ -232,7 +232,7 @@ Finally, these are two plots that show the number of images in each episode and 
    <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_each_episode.png" alt="Number of images in each episode" width="800"/>
 2. Total Number of Images Across All Episodes
    <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_total.png" alt="Number of images total" width="300"/>
-
+   Note: Since our dataset includes more Without_Peter images than With_Peter images, we may remove some Without_Peter images or add more With_Peter images to make both category in almost same size (i.e. number of images).
 # Preprocessing
 In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
 
