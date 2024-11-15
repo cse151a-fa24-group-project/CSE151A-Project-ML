@@ -1,17 +1,27 @@
-# Milestone 2: Data Exploration & Initial Preprocessing
+# Milestone 3: Pre-processing
 
 ## Table of Contents
-- [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
-  - [Table of Contents](#table-of-contents)
-- [Data Exploration and Plot](#data-exploration-and-plot)
-  - [Overview](#overview)
-  - [Extraction method](#extraction-method)
-  - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
-  - [Size of Image](#size-of-image)
-  - [Image Naming Convention](#image-naming-convention)
-  - [Plot Our Data](#plot-our-data)
-- [Preprocessing](#preprocessing)
+- [Milestone 3: Pre-processing](#milestone-3-pre-processing)
+    - [Table of Contents](#table-of-contents)
+  - [Pre-Processing](#pre-processing)
 
+- [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
+  - [Data Exploration and Plot](#data-exploration-and-plot)
+    - [Overview](#overview)
+    - [Extraction method](#extraction-method)
+    - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
+    - [Size of Image](#size-of-image)
+    - [Image Naming Convention](#image-naming-convention)
+    - [Plot Our Data](#plot-our-data)
+  - [Preprocessing](#preprocessing)
+
+
+# Pre-Processing
+
+
+
+
+# Milestone 2: Data Exploration & Initial Preprocessing
 
 # Data Exploration and Plot
 ## Overview
