@@ -1,83 +1,17 @@
-# Milestone 3: Pre-processing
+# Milestone 2: Data Exploration & Initial Preprocessing
 
 ## Table of Contents
-- [Milestone 3: Pre-processing](#milestone-3-pre-processing)
-    - [Table of Contents](#table-of-contents)
-  - [Pre-Processing](#pre-processing)
-  - [First Model](#first-model)
-    - [Training](#training)
-    - [Evaluating](#evaluating)
-  - [Conclusion](#conclusion)
-
-
 - [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
-  - [Data Exploration and Plot](#data-exploration-and-plot)
-    - [Overview](#overview)
-    - [Extraction method](#extraction-method)
-    - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
-    - [Size of Image](#size-of-image)
-    - [Image Naming Convention](#image-naming-convention)
-    - [Plot Our Data](#plot-our-data)
-  - [Preprocessing](#preprocessing)
+  - [Table of Contents](#table-of-contents)
+- [Data Exploration and Plot](#data-exploration-and-plot)
+  - [Overview](#overview)
+  - [Extraction method](#extraction-method)
+  - [Number of Classes and Example Classes](#number-of-classes-and-example-classes)
+  - [Size of Image](#size-of-image)
+  - [Image Naming Convention](#image-naming-convention)
+  - [Plot Our Data](#plot-our-data)
+- [Preprocessing](#preprocessing)
 
-
-# Pre-Processing
-To make our processing more efficient, we decided to downscale all of our images to be the same size, 320x240. Because of its nature as a animated TV sitcom series, Family Guy is composed of mostly simple frames. Thus, downsizing the individual frames will not lose much detail and should not have a too much of a detrimental effect on the model's ability to classify the frames as with Peter vs. without Peter. However, the decreased sizes should greatly increase the speeds at which the model's downloading and processing times. We used a simple **[python script](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Image%20resizing.ipynb)** to decrease the image sizes.
-
-# First Model
-## Training
-In order to focus on testing the feasibility of our project, we decided to restrict our dataset to images from a singular episode (S5E04). We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[our model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Model_Initial.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling. However, our model suggested that we were on the right path. And, after much tweaking, such a technique can most likely be successful for accomplishing the goals of our project.
-
-
-## Evaluating
-After ten epochs, our training accuracy settled at 99.59% and our testing accuracy at 85.87%. Manually testing several frames from this episode suggested that these numbers were accurate. In order to check for overfitting, we also gave the model a few frames from a different episode (S1E05) to classify, with the results shown below.
-
-   <br>
-   <table>
-        <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_1.png" alt="With Peter" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_2.png" alt="With Peter2" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_3.png" alt="With Peter3" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_4.png" alt="With Peter3" width="400"/>
-        </tr>
-   </table>
-
-Although the accuracy of this quick test seems to align with our testing accuracy, it gives us some idea about where the model may be inaccurate.
-
-## Fitting Model
-Our model fits in the overfitting region of the fitting graph. It is well shown in the training and validation metrics (graphs) resulted in Model_initial.ipynb:
-<br>
-   <table>
-        <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
-        </tr>
-   </table>
-
-The model achieves relatively low training loss (0.0155) and high training accuracy (0.9959). On the other hand, the model achieves relatively high training loss (0.5099) and low validation accuracy (0.8587). In addition, both validation loss and accuracy fluctuates significantly; validation loss spikes twice up to 7.8551 and 2.8553 before reaching 0.5099 at the final epoch. 
-
-Therefore, our conclusion is that our model now is too complex for our dataset, which led poor generalization to the validation set and overfitting issue (even though worked well on the training data). 
-
-To improve our models, we can try several options for our next model as the following:
-- Reduce the number of convolutional and dense layers
-- Decrease the filters/units in each layers
-- Increase dropout
-- Adding regularization to layers
-- Adjusting learning rate
-
-# Conclusion
-Our model has a testing accuracy of just ~85%, which is much too low for our objective, especially when considering that the testing and training data all come from the same episode. From testing with images from other episodes, we can see that details such as Peter wearing different clothes may trip up the model, suggesting overfitting. 
-
-There are many methods that we are considering to improve upon our initial model. They include:
-- Regularizing our data
-- Modifying our train/test splits
-- Reducing/changing the layers of the neural network
-- Optimizing the number of epochs
-- Using all our image data for training and testing
-
-We hope that this course of action will greatly improve the reliability of our model.
-
-# Milestone 2: Data Exploration & Initial Preprocessing
 
 # Data Exploration and Plot
 ## Overview
