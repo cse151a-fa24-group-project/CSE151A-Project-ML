@@ -4,6 +4,10 @@
 - [Milestone 3: Pre-processing](#milestone-3-pre-processing)
     - [Table of Contents](#table-of-contents)
   - [Pre-Processing](#pre-processing)
+  - [First Model](#first-model)
+    - [Training](#training)
+    - [Evaluating](#evaluating)
+
 
 - [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
   - [Data Exploration and Plot](#data-exploration-and-plot)
@@ -17,9 +21,26 @@
 
 
 # Pre-Processing
+To make our processing more efficient, we decided to downscale all of our images to be the same size, 320x240. Because of its nature as a animated TV sitcom series, Family Guy is composed of mostly simple frames. Thus, downsizing the individual frames will not lose much detail and should not have a too much of a detrimental effect on the model's ability to classify the frames as with Peter vs. without Peter. However, the decreased sizes should greatly increase the speeds at which the model's downloading and processing times. We used a simple **[python script](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Image%20resizing.ipynb)** to decrease the image sizes.
 
+# First Model
+## Training
+In order to focus on testing the feasibility of our project, we decided to restrict our dataset to images from a singular episode (S5E04). 
 
+## Evaluating
+After ten epochs, our training accuracy settled at 99.59% and our testing accuracy at 85.87%. Manually testing several frames from this episode suggested that these numbers were accurate. In order to check for overfitting, we also gave the model a few frames from a different episode (S1E05) to classify, with the results shown below.
 
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_1.png" alt="With Peter" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_2.png" alt="With Peter2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_3.png" alt="With Peter3" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/S1E05_TEST_4.png" alt="With Peter3" width="400"/>
+        </tr>
+   </table>
+
+Although the accuracy of this quick test seems to align with our testing accuracy, it gives us some idea about where the model may be inaccurate.
 
 # Milestone 2: Data Exploration & Initial Preprocessing
 
