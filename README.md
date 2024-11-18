@@ -67,7 +67,7 @@ To improve our models, we can try several options for our next model as the foll
 - Increase training dataset
 
 # Conclusion
-Our model has a testing accuracy of just ~85%, which is much too low for our objective, especially when considering that the testing and training data all come from the same episode. From testing with images from other episodes, we can see that details such as Peter wearing different clothes may trip up the model, suggesting overfitting. 
+Our model has a testing accuracy of just ~85%, which does beat out random guessing, suggestig that we are on the right track. However, the accuracy is much too low for our objective, especially when considering that the testing and training data all come from the same episode. From testing with images from other episodes, we can see that details such as Peter wearing different clothes may trip up the model, suggesting overfitting. 
 
 There are many methods that we are considering to improve upon our initial model. They include:
 - Regularizing our data
