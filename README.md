@@ -1,8 +1,15 @@
-# Milestone 3: Pre-processing
+# Milestone 4: Second Model
 
 ## Table of Contents
-- [Milestone 3: Pre-processing](#milestone-3-pre-processing)
+- [Milestone 4: Second Model](#milestone-4-second-model)
     - [Table of Contents](#table-of-contents)
+  - [Second Model](#second-model)
+    - [Evaluation](#evaluation)
+    - [Fitting Graph](#fitting-graph)
+  - [Next Model](#next-model)
+
+
+- [Milestone 3: Pre-processing](#milestone-3-pre-processing)
   - [Pre-Processing](#pre-processing)
   - [First Model](#first-model)
     - [Training](#training)
@@ -20,7 +27,15 @@
     - [Plot Our Data](#plot-our-data)
   - [Preprocessing](#preprocessing)
 
+# Second Model
 
+## Evaluation
+
+## Fitting Graph
+
+# Next Model
+
+# Milestone 3: Pre-Processing
 # Pre-Processing
 To make our processing more efficient and to address the inconsistency between image sizes, we decided to downscale all of our images to be the same size, 320x240. Because of its nature as a animated TV sitcom series, Family Guy is composed of mostly simple frames. Thus, downsizing the individual frames will not lose much detail and should not have a too much of a detrimental effect on the model's ability to classify the frames as with Peter vs. without Peter. However, the decreased sizes should greatly increase the speeds at which the model's downloading and processing times. We used a simple **[python script](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Image%20resizing.ipynb)** to decrease the image sizes.
 
