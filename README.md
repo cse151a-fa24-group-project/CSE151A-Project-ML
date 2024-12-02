@@ -139,7 +139,8 @@ For our v2 model, we calculated our TP, TN, FP, FN values.
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/image.PNG" alt="TP, TN, FP, FN" width="400"/>
         </tr>
    </table>
-```python
+
+```
 tp = 0 
 fp = 0 
 tn = 0 
@@ -167,6 +168,7 @@ print(f"False Positives (FP): {fp}")
 print(f"True Negatives (TN): {tn}")
 print(f"False Negatives (FN): {fn}")
 ```
+
 
 
 ### Fitting Model
