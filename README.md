@@ -92,7 +92,7 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
 optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
 ```
 ### Evaluation
-1. [ResNet50 v1](#)
+1. **[ResNet v1](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/ResNet_v1.ipynb)**
    <br>
    <table>
         <tr>
@@ -101,7 +101,7 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
         </tr>
    </table>
    Comparing to the simple CNN model from Milestone 3, we can check that our new model improved in large scale. First of all, the validation accuracy increased from 0.8587 to 0.9726. In addition, validation accuracy remians more stable and less fluctuated comparing to our previous model which had intense fluctuation, especially at epoch 3 and 7; validation accuracy dropped exponentially. 
-2. [ResNet50 v2](#)
+2. **[ResNet v2](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/ResNet_v2.ipynb)**
    <br>
    <table>
         <tr>
@@ -110,7 +110,7 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
         </tr>
    </table>
    Second version of Resnet showed lower accuracy and higher loss than first version (even though the differences were really small). However, there were huge improvements as we finally overcame (not 100% though) the fluctuation issue and overfitting problem. Our validation accuracy and loss aligns almost same with training ones; At the end, we are still experiencing with slight overfitting pattern, but we think that we can reduce that sign of overfitting, for example by making epoch to be not processed by lr scheduler.
-3. [VGG16 v1](#)
+3. **[VGG16 v1](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/VGG_v1.ipynb)**
    <br>
    <table>
         <tr>
