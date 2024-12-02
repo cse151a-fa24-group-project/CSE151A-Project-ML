@@ -161,6 +161,12 @@ print(f"False Positives (FP): {fp}")
 print(f"True Negatives (TN): {tn}")
 print(f"False Negatives (FN): {fn}")
 ```
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/image.PNG" alt="TP, TN, FP, FN" width="400"/>
+        </tr>
+   </table>
 
 ### Fitting Model
 Out of the three, we can see that ResNet50 v2 is most likely to be within the ideal range for model complexity on the Fitting Model. Although the val_accuracy for that model is less than v1, the closer accuracy vs val_accuracy and loss vs val_loss scores suggest that the v2 model is a better fit.
