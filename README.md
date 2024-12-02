@@ -8,6 +8,7 @@
     - [Evaluation](#evaluation)
     - [Fitting Model](#fitting-model)
   - [Next Model](#next-model)
+  - [Conclusion](#conclusion)
 - [Milestone 3: Pre-Processing](#milestone-3-pre-processing)
   - [Pre-Processing](#pre-processing)
   - [First Model](#first-model)
@@ -120,12 +121,52 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
    VGG model also resolves some fluctuating graphs and overfitting issue, but had significantly low accuracy and loss comparing to ResNets. In addition, it took way longer to train the VGG than ResNet or CNN. 
 
 Lastly, similar to Milestone2 model, two ResNet models listed above correctly classified the unseen data (5 images); VGG classified one unseen data (out of 5) wrong. 
+The unseen images in question:
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-10000.jpg" alt="Image 1" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-20000.jpg" alt="Image 2" width="400"/>
+        </tr>
+   </table>
+
+```python
+tp = 0 
+fp = 0 
+tn = 0 
+fn = 0
+
+for images, labels in test_datagen:
+    preds = model.predict(images)
+    # threshold=0.5
+    binary_preds = (preds > 0.5).astype(int).flatten()
+    labels = labels.numpy().flatten()
+
+    for pred, true_label in zip(binary_preds, labels):
+        if pred == 1 and true_label == 1:
+            tp += 1  # Correctly predicted 'With Peter'
+        elif pred == 1 and true_label == 0:
+            fp += 1  # Incorrectly predicted 'With Peter'
+        elif pred == 0 and true_label == 0:
+            tn += 1  # Correctly predicted 'Without Peter'
+        elif pred == 0 and true_label == 1:
+            fn += 1  # Incorrectly predicted 'Without Peter'
+
+Print results
+print(f"True Positives (TP): {tp}")
+print(f"False Positives (FP): {fp}")
+print(f"True Negatives (TN): {tn}")
+print(f"False Negatives (FN): {fn}")
+```
 
 ### Fitting Model
 Out of the three, we can see that ResNet50 v2 is most likely to be within the ideal range for model complexity on the Fitting Model. Although the val_accuracy for that model is less than v1, the closer accuracy vs val_accuracy and loss vs val_loss scores suggest that the v2 model is a better fit.
 
 ## Next Model
 For our next model, we are considering data augmentation. By adding in layers that can flip, invert, or otherwise alter the image, it can help our model better generalize. We are also thinking about using Deeper Custom CNN to test its ability to classify the presence of Peter against the models we tested for this milestone.
+
+## Conclusion
+As we shifted into using a deeper neural network, out test accuracy has improved greatly. Theoretically, our model should be able to correctly identify Peter's presence on screen in more than 19 out of every 20 frames. This makes the model much more reliable, and thus proves our endevour to be a fruitful one. The model's success at classifying frames from models it have not seen shows its versatility and generality. However, there are still aspects where we can shore up the model's overall accuracy, which we will work on for the next milestone. For our next milestone, we will also try to apply our model to an entire unseen episode of Family Guy.
 
 # Milestone 3: Pre-Processing
 ## Pre-Processing
