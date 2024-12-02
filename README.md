@@ -2,21 +2,19 @@
 
 ## Table of Contents
 - [Milestone 4: Second Model](#milestone-4-second-model)
-    - [Table of Contents](#table-of-contents)
+  - [Table of Contents](#table-of-contents)
   - [Second Model](#second-model)
+    - [Training](#training)
     - [Evaluation](#evaluation)
-    - [Fitting Graph](#fitting-graph)
+    - [Fitting Model](#fitting-model)
   - [Next Model](#next-model)
-
-
-- [Milestone 3: Pre-processing](#milestone-3-pre-processing)
+- [Milestone 3: Pre-Processing](#milestone-3-pre-processing)
   - [Pre-Processing](#pre-processing)
   - [First Model](#first-model)
-    - [Training](#training)
+    - [Training](#training-1)
     - [Evaluating](#evaluating)
+    - [Fitting Model](#fitting-model-1)
   - [Conclusion](#conclusion)
-
-
 - [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
   - [Data Exploration and Plot](#data-exploration-and-plot)
     - [Overview](#overview)
@@ -26,25 +24,92 @@
     - [Image Naming Convention](#image-naming-convention)
     - [Plot Our Data](#plot-our-data)
   - [Preprocessing](#preprocessing)
+    - [Points to Consider](#points-to-consider)
+    - [Initial Approach](#initial-approach)
 
-# Second Model
+## Second Model
+### Training
+Unlike our first model from Milestone 3, we decided to use all images (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16) by combinining all image folders into one folder in our google drive. In addition, instead of using simple CNN, we came up with 2 different models that use different types of pretrained model: ResNet50 and VGG16; later on, we're trying to also compare them with deeper CNN model which contains deeper layers in it. 
 
-## Evaluation
+*Note: Since we had to test different models with different parameters, we have two types of codes: a code for Google Colab which downloads dataset from google drive and a code for local in which we manually downloaded dataset from google drive.  
 
-## Fitting Graph
+1. [ResNet50](#)
+    ```python
+    base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+    model = tf.keras.models.Sequential([
+        base_model,
+        layers.MaxPooling2D(2, 2),
+        layers.Flatten(),
+        layers.Dense(512, activation='relu'),
+        layers.BatchNormalization(),
+        layers.Dense(512, activation='relu'),
+        layers.Dropout(0.1),
+        layers.BatchNormalization(),
+        layers.Dense(512, activation='relu'),
+        layers.Dropout(0.2),
+        layers.BatchNormalization(),
+        layers.Dense(1, activation='sigmoid')
+    ])
+    ```
+    Instead of using simple CNN structure, we used ResNet50 as our base model. In addition, after observing our loss/accuracy graph to be fluctuated, we tried more simpler model which still uses ResNet50 as the following:
+    ```python
+    base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+    model = tf.keras.models.Sequential([
+        base_model,
+        GlobalAveragePooling2D(),
+        Dense(256, activation='relu'),
+        Dropout(0.5),
+        BatchNormalization(),
+        Dense(1, activation='sigmoid')
+    ])
+    ``` 
+    We also experimented with different types of pooling: GlobalAveragePooling2D and MaxPooling2D/ 
+2. [VGG16](#)
+    ```python
+    base_model = VGG16(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+    model = tf.keras.models.Sequential([
+        base_model,
+        layers.GlobalAveragePooling2D(),
+        layers.Dense(512, activation='relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.5),
+        layers.Dense(256, activation='relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.3),
+        layers.Dense(1, activation='sigmoid')
+    ])
+    ```
+    Instead of using simple CNN, we used VGG16 as our base model. Similar to ResNet50, we tried with different parameters and layer setups, but the above code was our base code for different variations of VGG16 model. 
 
-# Next Model
+Lastly, after observing some overfitting patterns, we experimented our model with learning rate scheduler as the following:
+```python
+lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+    initial_learning_rate=1e-3, # adjusted
+    decay_steps=10000, # adjusted
+    decay_rate=0.9 # adjusted
+)
+optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
+```
+### Evaluation
+1. [ResNet v1]
+   
+   sdfdsf
+2. [ResNet v2]
+3. [ResNet v3]
+### Fitting Model
+
+## Next Model
 
 # Milestone 3: Pre-Processing
-# Pre-Processing
+## Pre-Processing
 To make our processing more efficient and to address the inconsistency between image sizes, we decided to downscale all of our images to be the same size, 320x240. Because of its nature as a animated TV sitcom series, Family Guy is composed of mostly simple frames. Thus, downsizing the individual frames will not lose much detail and should not have a too much of a detrimental effect on the model's ability to classify the frames as with Peter vs. without Peter. However, the decreased sizes should greatly increase the speeds at which the model's downloading and processing times. We used a simple **[python script](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Image%20resizing.ipynb)** to decrease the image sizes.
 
-# First Model
-## Training
+## First Model
+### Training
 In order to focus on testing the feasibility of our project, we decided to restrict our dataset to images from a singular episode (S5E04). We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[our model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Model_Initial.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling. However, our model suggested that we were on the right path. And, after much tweaking, such a technique can most likely be successful for accomplishing the goals of our project.
 
 
-## Evaluating
+### Evaluating
 After ten epochs, our training accuracy settled at 99.59% and our testing accuracy at 85.87%. Manually testing several frames from this episode suggested that these numbers were accurate. In order to check for overfitting, we also gave the model a few frames from a different episode (S1E05) to classify, with the results shown below.
 
    <br>
@@ -59,7 +124,7 @@ After ten epochs, our training accuracy settled at 99.59% and our testing accura
 
 Although the accuracy of this quick test seems to align with our testing accuracy, it gives us some idea about where the model may be inaccurate.
 
-## Fitting Model
+### Fitting Model
 Our model fits in the overfitting region of the fitting graph. It is well shown in the training and validation metrics (graphs) resulted in Model_initial.ipynb:
 <br>
    <table>
@@ -81,7 +146,7 @@ To improve our models, we can try several options for our next model as the foll
 - Adjusting learning rate
 - Increase training dataset
 
-# Conclusion
+## Conclusion
 Our model has a testing accuracy of just ~85%, which does beat out random guessing, suggestig that we are on the right track. However, the accuracy is much too low for our objective, especially when considering that the testing and training data all come from the same episode. From testing with images from other episodes, we can see that details such as Peter wearing different clothes may trip up the model, suggesting overfitting. 
 
 There are many methods that we are considering to improve upon our initial model. They include:
@@ -95,11 +160,11 @@ We hope that this course of action will greatly improve the reliability of our m
 
 # Milestone 2: Data Exploration & Initial Preprocessing
 
-# Data Exploration and Plot
-## Overview
+## Data Exploration and Plot
+### Overview
 Our model aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. In order to train and test our model, we extracted frames of Family Guy episodes and manually classfied them by the presence or absence of Peter Griffin.
 
-## Extraction method
+### Extraction method
 To check which episode includes Peter Griffin, we used **[Family Guy Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/family-guy-dataset/data)** from Kaggle. This dataset includes various information about each Episode/Season of Family Guy. We performed data exploration on this dataset as the [following](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Family_Guy_Episode_Extract.ipynb):
 <details>
 <summary>Click to collapse code</summary>
@@ -203,7 +268,7 @@ Then we assigned each person one episode to extract frames for our dataset. We u
     ```
     </details>
 
-## Number of Classes and Example Classes
+### Number of Classes and Example Classes
 1. Presence of Peter Griffin
    <br>
    <table>
@@ -318,10 +383,11 @@ Finally, these are two plots that show the number of images in each episode and 
    Note: Since our dataset includes more Without_Peter images than With_Peter images, we may remove some Without_Peter images or add more With_Peter images to make both category in almost same size (i.e. number of images).
 
 The Jupyter Notebook that includes data download and plotting information can be found at **[Data_Download.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Data_Download.ipynb)**
-# Preprocessing
+
+## Preprocessing
 In our initial exploration of the data, we identified several key preprocessing considerations that will guide our approach for training a CNN model.
 
-## Points to Consider
+### Points to Consider
 1. Image Size and Dimensions
    - Setting a standard input dimension is crucial for our CNN training process. To determine the optimal dimensions, we will experiment with different resolutions, balancing between higher dimensions, which offer more detail but require greater computational power, and lower dimensions, which are computationally efficient but capture less detail. This trade-off will allow us to find an effective compromise between detail and efficiency.
 2. Background Masking
@@ -329,5 +395,5 @@ In our initial exploration of the data, we identified several key preprocessing 
 3. Cropped Face Image
    - Another possible enhancement involves detecting and cropping faces of various characters in each frame, followed by classifying whether a cropped character is Peter. Similar to background masking, this approach would require manual labeling and inspection, so we may pursue it in later stages of the project if it proves beneficial.
     
-## Initial Approach
+### Initial Approach
 For our initial model training, we plan to use the raw frames and standardize them to a fixed 3D matrix format for color images. We will explore various image processing techniques to optimize the input, such as resizing with interpolation or anti-aliasing, based on their impact on performance. This straightforward approach will allow us to establish a baseline and later experiment with more advanced preprocessing techniques as needed.
