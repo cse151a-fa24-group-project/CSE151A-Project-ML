@@ -91,11 +91,24 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
 optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
 ```
 ### Evaluation
-1. [ResNet v1]
-   
-   sdfdsf
-2. [ResNet v2]
-3. [ResNet v3]
+1. [ResNet v1](#)
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+   Comparing to the simple CNN model from Milestone 3, we can check that our new model improved in large scale. First of all, the validation accuracy increased from 0.8587 to 0.9726. In addition, validation accuracy remians more stable and less fluctuated comparing to our previous model which had intense fluctuation, especially at epoch 3 and 7; validation accuracy dropped exponentially. 
+2. [ResNet v2](#)
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+3. [ResNet v3](#)
 ### Fitting Model
 
 ## Next Model
