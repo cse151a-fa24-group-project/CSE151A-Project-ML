@@ -121,12 +121,15 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
    VGG model also resolves some fluctuating graphs and overfitting issue, but had significantly low accuracy and loss comparing to ResNets. In addition, it took way longer to train the VGG than ResNet or CNN. 
 
 Lastly, similar to Milestone2 model, two ResNet models listed above correctly classified the unseen data (5 images); VGG classified one unseen data (out of 5) wrong. 
-The unseen images in question:
+The unseen images in question are from S2E18:
    <br>
    <table>
         <tr>
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-10000.jpg" alt="Image 1" width="400"/>
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-20000.jpg" alt="Image 2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-30000.jpg" alt="Image 3" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-40000.jpg" alt="Image 4" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/out-50000.jpg" alt="Image 5" width="400"/>
         </tr>
    </table>
 
