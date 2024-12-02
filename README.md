@@ -108,7 +108,7 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
-   Second version of Resnet showed lower accuracy and higher loss than first version (even though the differences were really small). However, there were huge improvements as we finally overcame (not 100% though) the fluctuation issue and overfitting problem. Our validation accuracy and loss aligns almost same with training ones; At the end, we are still experiencing with slight overfitting pattern (but we are guessing that we can reduce it by making epoch to be not processed by lr scheduler).
+   Second version of Resnet showed lower accuracy and higher loss than first version (even though the differences were really small). However, there were huge improvements as we finally overcame (not 100% though) the fluctuation issue and overfitting problem. Our validation accuracy and loss aligns almost same with training ones; At the end, we are still experiencing with slight overfitting pattern, but we think that we can reduce that sign of overfitting, for example by making epoch to be not processed by lr scheduler.
 3. [VGG16 v1](#)
    <br>
    <table>
@@ -117,6 +117,10 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/vgg_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
+   VGG model also resolves some fluctuating graphs and overfitting issue, but had significantly low accuracy and loss comparing to ResNets. In addition, it took way longer to train the VGG than ResNet or CNN. 
+
+Lastly, similar to Milestone2 model, two ResNet models listed above correctly classified the unseen data (5 images); VGG classified one unseen data (out of 5) wrong. 
+
 ### Fitting Model
 
 ## Next Model
