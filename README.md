@@ -122,8 +122,10 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
 Lastly, similar to Milestone2 model, two ResNet models listed above correctly classified the unseen data (5 images); VGG classified one unseen data (out of 5) wrong. 
 
 ### Fitting Model
+Out of the three, we can see that ResNet50 v2 is most likely to be within the ideal range for model complexity on the Fitting Model. Although the val_accuracy for that model is less than v1, the closer accuracy vs val_accuracy and loss vs val_loss scores suggest that the v2 model is a better fit.
 
 ## Next Model
+For our next model, we are considering data augmentation. By adding in layers that can flip, invert, or otherwise alter the image, it can help our model better generalize. We are also thinking about using Deeper Custom CNN to test its ability to classify the presence of Peter against the models we tested for this milestone.
 
 # Milestone 3: Pre-Processing
 ## Pre-Processing
