@@ -16,7 +16,7 @@ short[] input = {0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
         writer.println("ffmpeg -i ~/Downloads/S2E18.mkv -vf \"");
         short state = input[0];
         int start = 0;
-        for(int i = 4000; i < input.length; i++){
+        for(int i = 0; i < input.length; i++){
             short in = input[i];
             if(in != state){
                 writer.printf("drawtext=text=%s:enable='between(n,%d,%d)':x=10:y=10:fontsize=48:fontcolor=black", p[state], start*10, i*10-1);
