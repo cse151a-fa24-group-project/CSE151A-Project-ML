@@ -1,8 +1,49 @@
-# Milestone 4: Second Model
+# Milestone 5: Final Submission
 
 ## Table of Contents
-- [Milestone 4: Second Model](#milestone-4-second-model)
+<details>
+<summary> Click here to view full Table of Contents </summary>
+
+- [Milestone 5: Final Submission](#milestone-5-final-submission)
   - [Table of Contents](#table-of-contents)
+  - [1. Introduction](#1-introduction)
+    - [1.1 - Extraction Method](#11---extraction-method)
+    - [1.2 - Number of Classes and Example Classes](#12---number-of-classes-and-example-classes)
+    - [1.3 - Size and Number of Images](#13---size-and-number-of-images)
+      - [1.3.1 - Size of Images](#131---size-of-images)
+      - [1.3.2 - Number of Images](#132---number-of-images)
+  - [2. Models Methods](#2-models-methods)
+    - [2.1 - 1st Model (Simple CNN)](#21---1st-model-simple-cnn)
+      - [2.1.1 - Preprocessing](#211---preprocessing)
+      - [2.1.2 - Training](#212---training)
+    - [2.2 - 2nd Model (ResNet50\_v1)](#22---2nd-model-resnet50_v1)
+      - [2.2.1 - Preprocessing](#221---preprocessing)
+      - [2.2.2 - Training](#222---training)
+    - [2.3 - 3rd Model (ResNet50\_v2)](#23---3rd-model-resnet50_v2)
+      - [2.3.1 - Preprocessing](#231---preprocessing)
+      - [2.3.2 - Training](#232---training)
+    - [2.4 - 4th Model (VGG16)](#24---4th-model-vgg16)
+      - [2.4.1 - Preprocessing](#241---preprocessing)
+      - [2.4.2 - Training](#242---training)
+    - [2.5 - 5th Model (EfficientNet)](#25---5th-model-efficientnet)
+      - [2.5.1 - Preprocessing](#251---preprocessing)
+      - [2.5.2 - Training](#252---training)
+    - [2.6 - 6th Model (YOLOv11)](#26---6th-model-yolov11)
+      - [2.6.1 - Preprocessing](#261---preprocessing)
+      - [2.6.2 - Training](#262---training)
+  - [3. Models Results (Best)](#3-models-results-best)
+    - [3.1 - 1st Model (Simple CNN)](#31---1st-model-simple-cnn)
+    - [3.2 - 2nd Model (ResNet50\_v1)](#32---2nd-model-resnet50_v1)
+    - [3.3 - 3rd Model (ResNet50\_v2)](#33---3rd-model-resnet50_v2)
+      - [3.3.1 - New Codes to Predict S2E18 (Milestone 5)](#331---new-codes-to-predict-s2e18-milestone-5)
+      - [3.3.1 - Initial Model (Milestone 4)](#331---initial-model-milestone-4)
+      - [3.3.2 - Model Using Dataset After Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-after-duplicated-images-removal-milestone-5)
+    - [3.4 - 4th Model (VGG16)](#34---4th-model-vgg16)
+    - [3.5 - 5th Model (EfficientNet)](#35---5th-model-efficientnet)
+      - [3.3.1 - Initial Model (Milestone 5)](#331---initial-model-milestone-5)
+      - [3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-afer-duplicated-images-removal-milestone-5)
+    - [3.6 - 6th Model (YOLOv11)](#36---6th-model-yolov11)
+- [Milestone 4: Second Model](#milestone-4-second-model)
   - [Second Model](#second-model)
     - [Training](#training)
     - [Evaluation](#evaluation)
@@ -15,7 +56,7 @@
     - [Training](#training-1)
     - [Evaluating](#evaluating)
     - [Fitting Model](#fitting-model-1)
-  - [Conclusion](#conclusion)
+  - [Conclusion](#conclusion-1)
 - [Milestone 2: Data Exploration \& Initial Preprocessing](#milestone-2-data-exploration--initial-preprocessing)
   - [Data Exploration and Plot](#data-exploration-and-plot)
     - [Overview](#overview)
@@ -28,6 +69,593 @@
     - [Points to Consider](#points-to-consider)
     - [Initial Approach](#initial-approach)
 
+</details>
+
+## 1. Introduction
+Our predictive task aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model may also prove useful in helping people create compilations featuring a character of their choosing.
+
+The basic preparation for our model includes the following steps:
+
+### 1.1 - Extraction Method
+To check which episode includes Peter Griffin, we used **[Family Guy Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/family-guy-dataset/data)** from Kaggle. This dataset includes various information about each Episode/Season of Family Guy. We performed data exploration on this dataset as the **[Family_Guy_Episode_Extract.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Family_Guy_Episode_Extract.ipynb)**:
+<details>
+<summary>Click to collapse code</summary>
+
+```python
+import pandas as pd
+import kagglehub
+import os
+
+path = kagglehub.dataset_download("iamsouravbanerjee/family-guy-dataset")
+files = os.listdir(path)
+print(files)
+
+file_path = os.path.join(path, 'Family Guy Dataset.csv')
+df = pd.read_csv(file_path)
+filtered_episodes = df[df['Featuring'].str.contains(r'\bPeter\b', case=False, na=False)]
+filered_Season = filtered_episodes[['Season', 'No. of Episode (Season)']]
+season1_filtered_episodes = filered_Season[filered_Season['Season'] == 1]
+season2_filtered_episodes = filered_Season[filered_Season['Season'] == 2]
+season3_filtered_episodes = filered_Season[filered_Season['Season'] == 3]
+season4_filtered_episodes = filered_Season[filered_Season['Season'] == 4]
+season5_filtered_episodes = filered_Season[filered_Season['Season'] == 5]
+```
+**Example Result**:
+```plaintext
+| Season | No. of Episode (Season) |
+|--------|-------------------------|
+| 1      |           1             |
+| 1      |           2             |
+| 1      |           3             |
+| 1      |           4             |
+| 1      |           5             |
+| 1      |           6             |
+| 1      |           7             |
+```
+</details><br>
+
+Then we used following two methods to extract frames from Family Guy episodes that include Peter Griffin:
+1. **[Video Frame Extractor](https://frame-extractor.com/)**: We set distance between frames as 500ms so that we can get 2 frames per second. We experimeneted with few distances and found that 2fps result in fastest clear image extraction. 
+2. **[Frame_Extractor.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Frame_Extractor.ipynb)**: Some group members encountered error while using frame extractor above, so we used cv2 library to extract by ourselves as the below:
+    <details>
+    <summary>Click to collapse code</summary>
+    
+    ```python
+    import cv2
+    import os
+    import zipfile
+
+    def extract_frames(video_path, output_folder, frame_rate=1):
+        # Ensure the output directory exists
+        os.makedirs(output_folder, exist_ok=True)
+
+        # Open the video file
+        cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            print(f"Error opening video file: {video_path}")
+            return
+
+        # Get video properties
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        interval = int(fps / frame_rate)  # Capture every 'interval' frame
+
+        frame_count = 0
+        saved_count = 0
+
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            # Save frames at the specified interval
+            if frame_count % interval == 0:
+                frame_filename = os.path.join(output_folder, f"frame_{saved_count:04d}.jpg")
+                cv2.imwrite(frame_filename, frame)
+                saved_count += 1
+
+            frame_count += 1
+
+        cap.release()
+        print(f"Extracted {saved_count} frames to {output_folder}")
+
+    video_path = 's5e4.mp4'
+    output_folder = 'extracted_frames'
+    extract_frames(video_path, output_folder, frame_rate=2)
+
+    def zip_extracted_frames(folder_path, zip_filename="extracted_frames.zip"):
+        # Create a Zip file
+        with zipfile.ZipFile(zip_filename, 'w') as zipf:
+            # Loop through all files in the folder
+            for root, _, files in os.walk(folder_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    zipf.write(file_path, os.path.relpath(file_path, folder_path))
+        
+        print(f"Frames from '{folder_path}' have been zipped into '{zip_filename}'")
+
+    folder_path = 'extracted_frames'  # Folder with extracted frames
+    zip_filename = 'extracted_frames.zip'
+    zip_extracted_frames(folder_path, zip_filename)
+    ```
+    </details>
+
+### 1.2 - Number of Classes and Example Classes
+There are 2 classes in total:
+1. Presence of Peter Griffin
+   <br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example.png" alt="With Peter" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example2.png" alt="With Peter2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example3.png" alt="With Peter3" width="400"/>
+        </tr>
+   </table>
+   
+   Note: We classified the scenes where only small portion of Peter Griffin appears as presence of Peter Griffin. 
+2. Absence of Peter Griffin
+   <br>
+   <table>
+        <tr>
+            <td><img src="#" alt="Without Peter" width="400"/>
+            <td><img src="#" alt="Without Peter2" width="400"/>
+            <td><img src="#" alt="Without Peter3" width="400"/>
+        </tr>
+   </table>
+
+### 1.3 - Size and Number of Images
+#### 1.3.1 - Size of Images
+Depending on the extraction methods that each group member used, the image size varies.
+1. 1440x1080 png (from Video Frame Extractor)
+2. 320x240 jpg (from Frame_Extractor.ipynb*)
+
+#### 1.3.2 - Number of Images
+1. Number of Images in Each Episode (With_Peter vs Without_Peter)
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_each_episode.png" alt="Number of images in each episode" width="800"/>
+2. Total Number of Images Across All Episodes
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_total.png" alt="Number of images total" width="300"/>
+
+
+
+
+
+
+
+## 2. Models Methods
+### 2.1 - 1st Model (Simple CNN)
+#### 2.1.1 - Preprocessing
+We restricted our dataset to images from a singular episode (S5E04) with downscaling to 320x240 from 1440x1080 for faster downloading and training speed. We splitted training and validation set in 9:1 ratio. 
+#### 2.1.2 - Training 
+We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[1st model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Model_Initial.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling:
+```python
+model = tf.keras.models.Sequential([
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(320, 240, 3)),
+    layers.MaxPooling2D(2, 2),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D(2, 2),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D(2, 2),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D(2, 2),
+
+    layers.Flatten(),
+    layers.Dense(512, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dense(512, activation='relu'),
+    layers.Dropout(0.1),
+    layers.BatchNormalization(),
+    layers.Dense(512, activation='relu'),
+    layers.Dropout(0.2),
+    layers.BatchNormalization(),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+
+More details for our first model can be found in [Milestone 3](#milestone-3-pre-processing) section
+
+### 2.2 - 2nd Model (ResNet50_v1)
+#### 2.2.1 - Preprocessing
+Unlike our 1st model, we decided to use all images (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16) by combinining all image folders into one folder in our google drive. We also splitted training and validation set in 9:1 ratio. 
+#### 2.2.2 - Training
+We used pretrained model (ResNet50) as our base model and left other model setup same as our 1st model. **[Second Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/ResNet_v1.ipynb)** had model layers as the following:
+```python
+base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+model = tf.keras.models.Sequential([
+    base_model,
+    layers.MaxPooling2D(2, 2),
+    layers.Flatten(),
+    layers.Dense(512, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dense(512, activation='relu'),
+    layers.Dropout(0.1),
+    layers.BatchNormalization(),
+    layers.Dense(512, activation='relu'),
+    layers.Dropout(0.2),
+    layers.BatchNormalization(),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+More details for our Second model can be found in [Milestone 4](#milestone-4-second-model) section
+
+### 2.3 - 3rd Model (ResNet50_v2)
+#### 2.3.1 - Preprocessing
+With the same setup as our 2nd model, we added one more preprocessing step using **["preprocess_input"](https://www.tensorflow.org/api_docs/python/tf/keras/applications/resnet/preprocess_input)** function:
+
+```python
+from tensorflow.keras.applications.resnet50 import preprocess_input
+
+def preprocess_dataset(image, label):
+    # Apply ResNet50 preprocessing
+    image = preprocess_input(image)
+    return image, label
+
+# Preprocess datasets using the custom function
+train_datagen = train_datagen.map(preprocess_dataset)
+test_datagen = test_datagen.map(preprocess_dataset)
+```
+Later, during Milestone 5, we removed duplicated images (frames that have similar background and character setups) from our dataset. These, duplicated images are created since we set distance between frames as 500ms so that we can get 2 frames per second during extraction process mentioned at [1.1 - Extraction Method](#11---extraction-method)
+
+#### 2.3.2 - Training 
+We came up with simpler model with ResNet50 base model from our 3rd model. In addition, instead of using MaxPooling, we chose to use GlobalAveragePooling2D. **[Thrid Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/ResNet_v2.ipynb)** had model layers as the following:
+```python
+base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+base_model.trainable = False
+
+model = tf.keras.models.Sequential([
+    base_model,
+    GlobalAveragePooling2D(),
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    BatchNormalization(),
+    Dense(1, activation='sigmoid')
+])
+```
+More details for our Third model can be found in [Milestone 4](#milestone-4-second-model) section
+
+### 2.4 - 4th Model (VGG16)
+#### 2.4.1 - Preprocessing
+Instead of using resnet50's preprocess_input function, we adopted **["preprocess_input"](https://www.tensorflow.org/api_docs/python/tf/keras/applications/vgg16/preprocess_input)** function from vgg16:
+```python
+from tensorflow.keras.applications.vgg16 import preprocess_input
+
+def preprocess_dataset(image, label):
+    # Apply ResNet50 preprocessing
+    image = preprocess_input(image)
+    return image, label
+
+# Preprocess datasets using the custom function
+train_datagen = train_datagen.map(preprocess_dataset)
+test_datagen = test_datagen.map(preprocess_dataset)
+```
+#### 2.4.2 - Training
+With the same setup as our ResNet model, we changed the base model to VGG16 from ResNet50. **[Fourth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/VGG_v1.ipynb)** had model layers as the following:
+```python
+base_model = VGG16(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+base_model.trainable = False
+
+model = tf.keras.models.Sequential([
+    base_model,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(512, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dropout(0.5),
+    layers.Dense(256, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dropout(0.3),
+    layers.Dense(1, activation='sigmoid')
+])
+```
+More details for our Fourth model can be found in [Milestone 4](#milestone-4-second-model) section
+
+### 2.5 - 5th Model (EfficientNet)
+This model was created during Milestone 5. 
+#### 2.5.1 - Preprocessing
+First, we tested with the dataset we used for ResNet50_v1. Then, we removed duplicated images (frames that have similar background and character setups) from our dataset. These duplicated images are created since we set distance between frames as 500ms so that we can get 2 frames per second during extraction process mentioned at [1.1 - Extraction Method](#11---extraction-method)
+
+In addition, we utilized **["preprocess_input](https://www.tensorflow.org/api_docs/python/tf/keras/applications/efficientnet/preprocess_input)** function from resnet:
+```python
+from tensorflow.keras.applications.efficientnet import preprocess_input
+
+def preprocess_dataset(image, label):
+    image = preprocess_input(image)
+    return image, label
+
+# Preprocess datasets using the custom function
+train_datagen = train_datagen.map(preprocess_dataset)
+test_datagen = test_datagen.map(preprocess_dataset)
+```
+#### 2.5.2 - Training
+With the same setup as our ResNet model, we changed the base model to EfficientNet. **[Fifth Model](#)** had model layers as the following:
+```python
+base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
+base_model.trainable = False
+
+model = tf.keras.models.Sequential([
+    base_model,
+    GlobalAveragePooling2D(),
+    Dense(256, activation='relu'),
+    Dropout(0.5),
+    BatchNormalization(),
+    Dense(1, activation='sigmoid')
+])
+```
+
+### 2.6 - 6th Model (YOLOv11)
+This model was created during Milestone 5 for preliminary model for future usage. 
+#### 2.6.1 - Preprocessing
+We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)**to the images from the dataset where we removed the duplicated images. Below two images are showing how we labeled/annotated Peter using CVAT:
+<br>
+   <table>
+        <tr>
+            <td><img src="#" alt="CVAT Example 1" width="400"/>
+            <td><img src="#" alt="CVAT Example 2" width="400"/>
+        </tr>
+   </table>
+In addition, to run the YOLOv11 model, we setup our working directory as the following:
+
+```
+Working Directory/
+├── train/
+│   ├── images     # use 90% of images 
+│   ├── labels     # use 90% of labels 
+├── val/
+│   ├── images     # use 10% of images 
+│   ├── labels     # use 10% of labels 
+```
+
+Lastly, we created **[config.yaml](#)** for YOLOv11 model training:
+```yaml
+train: /train
+val: /val
+
+nc: 1 # number of classes
+
+names: ["Peter"] # name of class
+```
+
+#### 2.6.2 - Training 
+Since this YOLOv11 model was created for preliminary purpose, we didn't do hyperparameter tuning or experimenting with different YOLO variants. The training is done through **[YOLOv11_model.ipynb](#)**:
+```python
+from ultralytics import YOLO
+
+model = YOLO("yolo11n.pt") # yolo v11 nano
+
+train_results = model.train(
+    data="config.yaml",  
+    epochs=10,  
+)
+```
+
+
+## 3. Models Results (Best)
+### 3.1 - 1st Model (Simple CNN)
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Our Simple CNN Model achieved 99.59% of training accuracy and 85.87% of validation accuracy. 
+
+### 3.2 - 2nd Model (ResNet50_v1)
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Our ResNet50_v1 Model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
+
+
+### 3.3 - 3rd Model (ResNet50_v2)
+#### 3.3.1 - New Codes to Predict S2E18 (Milestone 5)
+During Milestone 5, we tried to check the model performance on unseen data (not validation datset) from **S2E18**. We first set two folders: "frames_resized" and "frames_classified".
+1. "frames_resized" includes all the frames from S2E18 without classifying it into with_peter and without_peter.
+2. "frames_classified" includes two folders inside: "With_peter" and "Without_peter" which are classfied manually. 
+
+Then, using the code below, we calculated classified list which includes 1s for Peter and 0s for Non-Peter from our model prediciton on S2E18:
+```python
+directory = "frames_resized"
+
+files = [f for f in os.listdir(directory) if f.startswith("out-") and f.endswith(".jpg")]
+
+sorted_files = sorted(files, key=lambda x: int(x.split('-')[1].split('.')[0]))
+
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+
+classified = []
+
+index = 0
+for file in sorted_files:
+    file_path = os.path.join(directory, file)
+    test_image = load_img(file_path,target_size=(320,240))
+    test_image = img_to_array(test_image)
+    test_image = np.expand_dims(test_image,axis=0)
+    result = model.predict(test_image,verbose=0)
+    if(result<0.5):
+        peter = 1
+    else:
+        peter = 0
+    classified.append(peter)
+    index += 1
+```
+After that, using the following code, we calculated actual classified list using "With_Peter" images from "frames_classified" to compare with above classified list from our model:
+```python
+directory = "frames_classified/With_Peter"
+
+files = [f for f in os.listdir(directory) if f.startswith("out-") and f.endswith(".jpg")]
+
+classified_actual = [0 for _ in range(len(classified))] 
+
+for file in files:
+    integer_part = int(file.split('-')[1].split('.')[0])
+    integer_part = int(integer_part/10 -1)
+    classified_actual[integer_part] = 1
+
+print(classified_actual)
+```
+Finally, we calcualted how many images from S2E18 that the model correctly predicted as the following:
+```python
+T = np.sum(np.array(classified) == np.array(classified_actual))
+F = np.sum(np.array(classified) != np.array(classified_actual))
+accuracy = T / (T+F)
+print(T+F)
+print(accuracy)
+
+```
+
+#### 3.3.1 - Initial Model (Milestone 4)
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Our Initial ResNet50_v2 model achieved ~96% of training accuracy and validation accuracy. 
+
+In addition, using the code snippet below:
+
+<details>
+<summary>Click here to view code snippet</summary>
+
+```python
+tp = 0 
+fp = 0 
+tn = 0 
+fn = 0  
+
+for images, labels in test_datagen:
+    preds = model.predict(images)
+    # threshold=0.5
+    binary_preds = (preds > 0.5).astype(int).flatten()
+    labels = labels.numpy().flatten()
+    
+    for pred, true_label in zip(binary_preds, labels):
+        if pred == 1 and true_label == 1:
+            tp += 1  # Correctly predicted 'With Peter'
+        elif pred == 1 and true_label == 0:
+            fp += 1  # Incorrectly predicted 'With Peter'
+        elif pred == 0 and true_label == 0:
+            tn += 1  # Correctly predicted 'Without Peter'
+        elif pred == 0 and true_label == 1:
+            fn += 1  # Incorrectly predicted 'Without Peter'
+
+# Print results
+print(f"True Positives (TP): {tp}")
+print(f"False Positives (FP): {fp}")
+print(f"True Negatives (TN): {tn}")
+print(f"False Negatives (FN): {fn}")
+```
+</details>
+<br>
+We got our TP, TN, FP, FN values for Initial ResNet50_v2 model as the following:
+
+```
+True Positives (TP): 667
+False Positives (FP): 26
+True Negatives (TN): 566
+False Negatives (FN): 17
+```
+
+Lastly, we got 74.11% of accuracy on predicting S2E18 unseen episode. 
+
+#### 3.3.2 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
+<br>
+   <table>
+        <tr>
+            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Using the same model but with the dataset that doesn't include duplicated images, our ResNet50_v2 model achieved ?
+
+In addition, we got our TP, TN, FP, FN values as the following:
+```
+True Positives (TP): ?
+False Positives (FP): ?
+True Negatives (TN): ?
+False Negatives (FN): ?
+```
+
+Lastly, we got ?% of accuracy on predicting S2E18 unseen episode. 
+
+
+### 3.4 - 4th Model (VGG16)
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/vgg_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/vgg_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Our VGG16 model achieved 90.73% of training accuracy and 91.61% of validation accuracy.
+
+### 3.5 - 5th Model (EfficientNet)
+#### 3.3.1 - Initial Model (Milestone 5)
+<br>
+   <table>
+        <tr>
+            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Our Initial EfficientNet model achieved 95% of training accuracy and 95.22% of validation accuracy. 
+
+In addition, we got our TP, TN, FP, FN values as the following:
+```
+True Positives (TP): 651
+False Positives (FP): 28
+True Negatives (TN): 564
+False Negatives (FN): 33
+```
+
+Lastly, we got 76.75% of accuracy on predicting S2E18 unseen episode. 
+
+
+#### 3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)
+<br>
+   <table>
+        <tr>
+            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Using the same model but with the dataset that doesn't include duplicated images, our EfficientNet model achieved 92.76% of training accuracy and 84.44% of validation accuracy. 
+
+In addition, we got our TP, TN, FP, FN values as the following:
+```
+True Positives (TP): 102
+False Positives (FP): 20
+True Negatives (TN): 50
+False Negatives (FN): 8
+```
+Lastly, we got 84.31% of accuracy on predicting S2E18 unseen episode. 
+
+### 3.6 - 6th Model (YOLOv11)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Milestone 4: Second Model
 ## Second Model
 ### Training
 Unlike our first model from Milestone 3, we decided to use all images (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16) by combinining all image folders into one folder in our google drive. In addition, instead of using simple CNN, we came up with 2 different models that use different types of pretrained model: ResNet50 and VGG16; later on, we're trying to also compare them with deeper CNN model which contains deeper layers in it. 
