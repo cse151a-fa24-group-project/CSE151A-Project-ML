@@ -1,3 +1,7 @@
+<div align="center">
+<img width="100%" src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/banner_cse151a.png" alt="Main Banner">
+</div>
+
 # Milestone 5: Final Submission
 
 ## Table of Contents
