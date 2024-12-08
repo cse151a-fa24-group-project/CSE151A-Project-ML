@@ -50,6 +50,11 @@
       - [3.3.1 - Initial Model (Milestone 5)](#331---initial-model-milestone-5)
       - [3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-afer-duplicated-images-removal-milestone-5)
     - [3.6 - 6th Model (YOLOv11)](#36---6th-model-yolov11)
+      - [3.6.1 - F1, PR, P, R curves](#361---f1-pr-p-r-curves)
+      - [3.6.2 - Confusion Matrix](#362---confusion-matrix)
+      - [3.6.3 - Model Training Result](#363---model-training-result)
+      - [3.6.4 - Model's Prediciton on Validation Set and unseen data](#364---models-prediciton-on-validation-set-and-unseen-data)
+      - [3.6.5 - Model's Prediction on Video (S2E18)](#365---models-prediction-on-video-s2e18)
 - [Milestone 4: Second Model](#milestone-4-second-model)
   - [Second Model](#second-model)
     - [Training](#training)
@@ -692,12 +697,60 @@ False Negatives (FN): 8
 Lastly, we got 84.31% of accuracy on predicting S2E18 unseen episode. 
 
 ### 3.6 - 6th Model (YOLOv11)
+#### 3.6.1 - F1, PR, P, R curves
+After running YOLOv11 model, it created F1, PR, P, and R curve for the model as the following:
 
+<br>
+    <table>
+    <tr>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/F1_curve.png" alt="F1 curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/PR_curve.png" alt="PR curve" width="400"></td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/P_curve.png" alt="P curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/R_curve.png" alt="R curve" width="400"></td>
+    </tr>
+    </table>
 
+#### 3.6.2 - Confusion Matrix
+We got confusion matrix (normalized & unnormalized) as the following:
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/confusion_matrix.png" alt="Confusion Matrix" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/confusion_matrix_normalized.png" alt="Normalized Confusion Matrix" width="400"/>
+        </tr>
+   </table>
 
+#### 3.6.3 - Model Training Result
+The model's loss, precision, recall, and other metrics are in **[results.png](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/results.png)**:
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/results.png" alt="Results" width="400"/>
+        </tr>
+   </table>
 
+#### 3.6.4 - Model's Prediciton on Validation Set and unseen data
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/val_batch2_labels.jpg" alt="val_batch2_labels" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/val_batch2_pred.jpg" alt="val_batch2_pred" width="400"/>
+        </tr>
+   </table>
+Left plot is displaying the label for few validation images. Right plot is displaying the prediction on each label for those validation images. 
 
+In addition, using **["6th_model_YOLOv11_4prediction.ipynb"](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_4prediction.ipynb)**, we predicted unseen images with the YOLOv11 model. Below is one of the prediction on unseen images:
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_prediction_example.jpg" alt="prediction example" width="400"/>
+        </tr>
+   </table>
+It is considering Peter in images as Peter with 0.96 probability(confidence).
 
+#### 3.6.5 - Model's Prediction on Video (S2E18)
 
 
 
