@@ -393,7 +393,7 @@ The Fourth Model that used dataset where duplicated images are removed can be fo
 ### 2.6 - 6th Model (YOLOv11)
 This model was created during Milestone 5 for preliminary model for future usage. 
 #### 2.6.1 - Preprocessing
-We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)**to the images from the dataset where we removed the duplicated images. Below two images are showing how we labeled/annotated Peter using CVAT:
+We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)** to the images from the dataset where we removed the duplicated images. Below two images are showing how we labeled/annotated Peter using CVAT:
 <br>
    <table>
         <tr>
