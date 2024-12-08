@@ -41,9 +41,11 @@
     - [3.2 - 2nd Model (ResNet50\_v1)](#32---2nd-model-resnet50_v1)
     - [3.3 - 3rd Model (ResNet50\_v2)](#33---3rd-model-resnet50_v2)
       - [3.3.1 - New Codes to Predict S2E18 (Milestone 5)](#331---new-codes-to-predict-s2e18-milestone-5)
-      - [3.3.1 - Initial Model (Milestone 4)](#331---initial-model-milestone-4)
-      - [3.3.2 - Model Using Dataset After Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-after-duplicated-images-removal-milestone-5)
+      - [3.3.2 - Initial Model (Milestone 4)](#332---initial-model-milestone-4)
+      - [3.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)](#333---model-using-dataset-after-duplicated-images-removal-milestone-5)
     - [3.4 - 4th Model (VGG16)](#34---4th-model-vgg16)
+      - [3.4.1 - Initial Model  (Milestone 4)](#341---initial-model--milestone-4)
+      - [3.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)](#342---model-using-dataset-after-duplicated-images-removal-milestone-5)
     - [3.5 - 5th Model (EfficientNet)](#35---5th-model-efficientnet)
       - [3.3.1 - Initial Model (Milestone 5)](#331---initial-model-milestone-5)
       - [3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-afer-duplicated-images-removal-milestone-5)
@@ -466,18 +468,18 @@ The trained model can be found in **[cse151a_1.pt](https://github.com/cse151a-fa
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/assets/Training Accuracy and Validation Accuracy.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
-Our Simple CNN Model achieved 99.59% of training accuracy and 85.87% of validation accuracy. 
+Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of validation accuracy. 
 
 ### 3.2 - 2nd Model (ResNet50_v1)
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v1_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/2nd_Model/2nd_model_ResNet_v1_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/2nd_Model/2nd_model_ResNet_v1_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
 Our ResNet50_v1 Model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
@@ -540,15 +542,15 @@ print(accuracy)
 
 ```
 
-#### 3.3.1 - Initial Model (Milestone 4)
+#### 3.3.2 - Initial Model (Milestone 4)
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/resnet_v2_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
-Our Initial ResNet50_v2 model achieved ~96% of training accuracy and validation accuracy. 
+Our Initial ResNet50_v2 model achieved 95.59% of training accuracy and 95.85% of validation accuracy. 
 
 In addition, using the code snippet below:
 
@@ -588,52 +590,73 @@ print(f"False Negatives (FN): {fn}")
 We got our TP, TN, FP, FN values for Initial ResNet50_v2 model as the following:
 
 ```
-True Positives (TP): 667
-False Positives (FP): 26
-True Negatives (TN): 566
-False Negatives (FN): 17
+True Positives (TP): 671
+False Positives (FP): 40
+True Negatives (TN): 552
+False Negatives (FN): 13
 ```
 
 Lastly, we got 74.11% of accuracy on predicting S2E18 unseen episode. 
 
-#### 3.3.2 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
+#### 3.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
 <br>
    <table>
         <tr>
-            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2(dataset_fixed)_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2(dataset_fixed)_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
-Using the same model but with the dataset that doesn't include duplicated images, our ResNet50_v2 model achieved ?
+Using the same model but with the dataset that doesn't include duplicated images, our ResNet50_v2 model achieved 91.38% of training accuracy and 81.11% of validation accuracy.
 
 In addition, we got our TP, TN, FP, FN values as the following:
 ```
-True Positives (TP): ?
-False Positives (FP): ?
-True Negatives (TN): ?
-False Negatives (FN): ?
+True Positives (TP): 93
+False Positives (FP): 17
+True Negatives (TN): 53
+False Negatives (FN): 17
 ```
 
-Lastly, we got ?% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 72.95% of accuracy on predicting S2E18 unseen episode. 
 
 
 ### 3.4 - 4th Model (VGG16)
+#### 3.4.1 - Initial Model  (Milestone 4)
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/vgg_accuracy.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone4/milestone4/assets/vgg_loss.png" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
-Our VGG16 model achieved 90.73% of training accuracy and 91.61% of validation accuracy.
+Our Initial VGG16 model achieved 90.73% of training accuracy and 91.61% of validation accuracy.
+
+#### 3.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16%20(dataset_fixed)_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16%20(dataset_fixed)_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
+        </tr>
+   </table>
+Using the same model but with the dataset that doesn't include duplicated images, our VGG16 model achieved 88.67% of training accuracy and 82.22% of validation accuracy.
+
+In addition, we got our TP, TN, FP, FN values as the following:
+```
+True Positives (TP): 94
+False Positives (FP): 16
+True Negatives (TN): 54
+False Negatives (FN): 16
+```
+
+Lastly, we got 76.72% of accuracy on predicting S2E18 unseen episode. 
 
 ### 3.5 - 5th Model (EfficientNet)
 #### 3.3.1 - Initial Model (Milestone 5)
 <br>
    <table>
         <tr>
-            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
 Our Initial EfficientNet model achieved 95% of training accuracy and 95.22% of validation accuracy. 
@@ -653,8 +676,8 @@ Lastly, we got 76.75% of accuracy on predicting S2E18 unseen episode.
 <br>
    <table>
         <tr>
-            <td><img src="#" alt="Training Accuracy and Validation Accuracy" width="400"/>
-            <td><img src="#" alt="Training Loss and Validation Loss" alt="Training Loss and Validation Loss" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed)_accuracy_plot.png" alt="Training Accuracy and Validation Accuracy" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed)_loss_plot.png" alt="Training Loss and Validation Loss" width="400"/>
         </tr>
    </table>
 Using the same model but with the dataset that doesn't include duplicated images, our EfficientNet model achieved 92.76% of training accuracy and 84.44% of validation accuracy. 
