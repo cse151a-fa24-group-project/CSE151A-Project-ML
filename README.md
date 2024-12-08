@@ -81,7 +81,7 @@ Our predictive task aims to recognize whether Peter Griffin is on screen during 
 The basic preparation for our model includes the following steps:
 
 ### 1.1 - Extraction Method
-To check which episode includes Peter Griffin, we used **[Family Guy Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/family-guy-dataset/data)** from Kaggle. This dataset includes various information about each Episode/Season of Family Guy. We performed data exploration on this dataset as the **[Family_Guy_Episode_Extract.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Family_Guy_Episode_Extract.ipynb)**:
+To check which episode includes Peter Griffin, we used **[Family Guy Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/family-guy-dataset/data)** from Kaggle. This dataset includes various information about each Episode/Season of Family Guy. We performed data exploration on this dataset as the **[Family_Guy_Episode_Extract.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Family_Guy_Episode_Extract.ipynb)**:
 <details>
 <summary>Click to collapse code</summary>
 
@@ -120,7 +120,7 @@ season5_filtered_episodes = filered_Season[filered_Season['Season'] == 5]
 
 Then we used following two methods to extract frames from Family Guy episodes that include Peter Griffin:
 1. **[Video Frame Extractor](https://frame-extractor.com/)**: We set distance between frames as 500ms so that we can get 2 frames per second. We experimeneted with few distances and found that 2fps result in fastest clear image extraction. 
-2. **[Frame_Extractor.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/Frame_Extractor.ipynb)**: Some group members encountered error while using frame extractor above, so we used cv2 library to extract by ourselves as the below:
+2. **[Frame_Extractor.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Frame_Extractor.ipynb)**: Some group members encountered error while using frame extractor above, so we used cv2 library to extract by ourselves as the below:
     <details>
     <summary>Click to collapse code</summary>
     
@@ -189,9 +189,9 @@ There are 2 classes in total:
    <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example.png" alt="With Peter" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example2.png" alt="With Peter2" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/with_peter_example3.png" alt="With Peter3" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/with_peter_example.png" alt="With Peter" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/with_peter_example2.png" alt="With Peter2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/with_peter_example3.png" alt="With Peter3" width="400"/>
         </tr>
    </table>
    
@@ -200,9 +200,9 @@ There are 2 classes in total:
    <br>
    <table>
         <tr>
-            <td><img src="#" alt="Without Peter" width="400"/>
-            <td><img src="#" alt="Without Peter2" width="400"/>
-            <td><img src="#" alt="Without Peter3" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example.png" alt="Without Peter" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example2.png" alt="Without Peter2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example3.png" alt="Without Peter3" width="400"/>
         </tr>
    </table>
 
@@ -213,12 +213,12 @@ Depending on the extraction methods that each group member used, the image size 
 2. 320x240 jpg (from Frame_Extractor.ipynb*)
 
 #### 1.3.2 - Number of Images
-1. Number of Images in Each Episode (With_Peter vs Without_Peter)
-   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_each_episode.png" alt="Number of images in each episode" width="800"/>
-2. Total Number of Images Across All Episodes
-   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone2/milestone2/assets/number_of_images_total.png" alt="Number of images total" width="300"/>
-
-
+1. Number of images in each episode (With_Peter vs Without_Peter)
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Dataset_number_of_Images_per_Episode.png" alt="Number of images in each episode" width="800"/>
+2. Total number of images across all episodes
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Dataset_total_number_of_Images.png" alt="Number of images total" width="300"/>
+3. Total number of images across all episodes after removing duplicated images (Milestone 5)
+   <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Dataset_non_Duplicated_total_number_of_Images.png" alt="Number of images total" width="300"/>
 
 
 
@@ -638,8 +638,6 @@ False Negatives (FN): 8
 Lastly, we got 84.31% of accuracy on predicting S2E18 unseen episode. 
 
 ### 3.6 - 6th Model (YOLOv11)
-
-
 
 
 
