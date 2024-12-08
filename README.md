@@ -229,7 +229,7 @@ Depending on the extraction methods that each group member used, the image size 
 #### 2.1.1 - Preprocessing
 We restricted our dataset to images from a singular episode (S5E04) with downscaling to 320x240 from 1440x1080 for faster downloading and training speed. We splitted training and validation set in 9:1 ratio. 
 #### 2.1.2 - Training 
-We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[1st model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone3/milestone3/Model_Initial.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling:
+We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[1st model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling:
 ```python
 model = tf.keras.models.Sequential([
     layers.Conv2D(32, (3, 3), activation='relu', input_shape=(320, 240, 3)),
@@ -260,7 +260,7 @@ More details for our first model can be found in [Milestone 3](#milestone-3-pre-
 #### 2.2.1 - Preprocessing
 Unlike our 1st model, we decided to use all images (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16) by combinining all image folders into one folder in our google drive. We also splitted training and validation set in 9:1 ratio. 
 #### 2.2.2 - Training
-We used pretrained model (ResNet50) as our base model and left other model setup same as our 1st model. **[Second Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/ResNet_v1.ipynb)** had model layers as the following:
+We used pretrained model (ResNet50) as our base model and left other model setup same as our 1st model. **[Second Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/2nd_Model/2nd_model_ResNet_v1.ipynb)** had model layers as the following:
 ```python
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
 model = tf.keras.models.Sequential([
@@ -299,7 +299,7 @@ test_datagen = test_datagen.map(preprocess_dataset)
 Later, during Milestone 5, we removed duplicated images (frames that have similar background and character setups) from our dataset. These, duplicated images are created since we set distance between frames as 500ms so that we can get 2 frames per second during extraction process mentioned at [1.1 - Extraction Method](#11---extraction-method)
 
 #### 2.3.2 - Training 
-We came up with simpler model with ResNet50 base model from our 3rd model. In addition, instead of using MaxPooling, we chose to use GlobalAveragePooling2D. **[Thrid Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/ResNet_v2.ipynb)** had model layers as the following:
+We came up with simpler model with ResNet50 base model from our 3rd model. In addition, instead of using MaxPooling, we chose to use GlobalAveragePooling2D. **[Thrid Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2.ipynb)** had model layers as the following:
 ```python
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
 base_model.trainable = False
@@ -313,6 +313,8 @@ model = tf.keras.models.Sequential([
     Dense(1, activation='sigmoid')
 ])
 ```
+The Third Model that used dataset where duplicated images are removed can be found **[here](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2(dataset_fixed).ipynb)**; this version of model was created during Milestone 5.
+
 More details for our Third model can be found in [Milestone 4](#milestone-4-second-model) section
 
 ### 2.4 - 4th Model (VGG16)
@@ -330,8 +332,10 @@ def preprocess_dataset(image, label):
 train_datagen = train_datagen.map(preprocess_dataset)
 test_datagen = test_datagen.map(preprocess_dataset)
 ```
+Similar to ResNet_v2, later during Milestone 5, we removed duplicated images from our dataset. 
+
 #### 2.4.2 - Training
-With the same setup as our ResNet model, we changed the base model to VGG16 from ResNet50. **[Fourth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone4/VGG_v1.ipynb)** had model layers as the following:
+With the same setup as our ResNet model, we changed the base model to VGG16 from ResNet50. **[Fourth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16.ipynb)** had model layers as the following:
 ```python
 base_model = VGG16(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
 base_model.trainable = False
@@ -348,12 +352,14 @@ model = tf.keras.models.Sequential([
     layers.Dense(1, activation='sigmoid')
 ])
 ```
+The Fourth Model that used dataset where duplicated images are removed can be found **[here](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16%20(dataset_fixed).ipynb)**; this version of model was created during Milestone 5.
+
 More details for our Fourth model can be found in [Milestone 4](#milestone-4-second-model) section
 
 ### 2.5 - 5th Model (EfficientNet)
 This model was created during Milestone 5. 
 #### 2.5.1 - Preprocessing
-First, we tested with the dataset we used for ResNet50_v1. Then, we removed duplicated images (frames that have similar background and character setups) from our dataset. These duplicated images are created since we set distance between frames as 500ms so that we can get 2 frames per second during extraction process mentioned at [1.1 - Extraction Method](#11---extraction-method)
+First, we tested with the dataset we used for ResNet50_v1. Then, we removed duplicated images (frames that have similar background and character setups) from our dataset like ResNet_v2 and VGG16.
 
 In addition, we utilized **["preprocess_input](https://www.tensorflow.org/api_docs/python/tf/keras/applications/efficientnet/preprocess_input)** function from resnet:
 ```python
@@ -368,7 +374,7 @@ train_datagen = train_datagen.map(preprocess_dataset)
 test_datagen = test_datagen.map(preprocess_dataset)
 ```
 #### 2.5.2 - Training
-With the same setup as our ResNet model, we changed the base model to EfficientNet. **[Fifth Model](#)** had model layers as the following:
+With the same setup as our ResNet model, we changed the base model to EfficientNet. **[Fifth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet.ipynb)** had model layers as the following:
 ```python
 base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
 base_model.trainable = False
@@ -382,6 +388,7 @@ model = tf.keras.models.Sequential([
     Dense(1, activation='sigmoid')
 ])
 ```
+The Fourth Model that used dataset where duplicated images are removed can be found **[here](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed).ipynb)**; this version of model was also created during Milestone 5.
 
 ### 2.6 - 6th Model (YOLOv11)
 This model was created during Milestone 5 for preliminary model for future usage. 
@@ -390,8 +397,8 @@ We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)**
 <br>
    <table>
         <tr>
-            <td><img src="#" alt="CVAT Example 1" width="400"/>
-            <td><img src="#" alt="CVAT Example 2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/CVAT_example1.png" alt="CVAT Example 1" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/CVAT_example2.png" alt="CVAT Example 2" width="400"/>
         </tr>
    </table>
 In addition, to run the YOLOv11 model, we setup our working directory as the following:
@@ -406,7 +413,7 @@ Working Directory/
 │   ├── labels     # use 10% of labels 
 ```
 
-Lastly, we created **[config.yaml](#)** for YOLOv11 model training:
+Lastly, we created **[config.yaml](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/config.yaml)** for YOLOv11 model training:
 ```yaml
 train: /train
 val: /val
@@ -417,7 +424,7 @@ names: ["Peter"] # name of class
 ```
 
 #### 2.6.2 - Training 
-Since this YOLOv11 model was created for preliminary purpose, we didn't do hyperparameter tuning or experimenting with different YOLO variants. The training is done through **[YOLOv11_model.ipynb](#)**:
+Since this YOLOv11 model was created for preliminary purpose, we didn't do hyperparameter tuning or experimenting with different YOLO variants. The training is done through **[6th_model_YOLOv11.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11.ipynb)**:
 ```python
 from ultralytics import YOLO
 
