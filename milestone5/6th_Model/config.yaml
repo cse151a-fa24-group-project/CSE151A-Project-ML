@@ -1,0 +1,6 @@
+train: /Users/jaewon/Documents/CSE151A/Milestone5/YOLO_models/train
+val: /Users/jaewon/Documents/CSE151A/Milestone5/YOLO_models/val
+
+nc: 1
+
+names: ["Peter"]
