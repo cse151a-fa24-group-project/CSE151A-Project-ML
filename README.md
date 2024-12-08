@@ -453,7 +453,7 @@ train_results = model.train(
     epochs=10,  
 )
 ```
-The trained model can be found in **[cse151a_1.pt](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/cse151a_1.pt)**.
+
 
 ### 2.7 - Model Flow Summary
 | Model Name | Dataset | Milestone | Misc. |
