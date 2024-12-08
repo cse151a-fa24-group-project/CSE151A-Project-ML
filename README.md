@@ -35,6 +35,7 @@
     - [2.6 - 6th Model (YOLOv11)](#26---6th-model-yolov11)
       - [2.6.1 - Preprocessing](#261---preprocessing)
       - [2.6.2 - Training](#262---training)
+    - [2.7 - Model Flow Summary](#27---model-flow-summary)
   - [3. Models Results (Best)](#3-models-results-best)
     - [3.1 - 1st Model (Simple CNN)](#31---1st-model-simple-cnn)
     - [3.2 - 2nd Model (ResNet50\_v1)](#32---2nd-model-resnet50_v1)
@@ -401,17 +402,27 @@ We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)**
             <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/CVAT_example2.png" alt="CVAT Example 2" width="400"/>
         </tr>
    </table>
+
 In addition, to run the YOLOv11 model, we setup our working directory as the following:
 
 ```
 Working Directory/
 ├── train/
-│   ├── images     # use 90% of images 
-│   ├── labels     # use 90% of labels 
+│   ├── images     # used ~80% of images 
+│   ├── labels     # used ~80% of labels 
 ├── val/
-│   ├── images     # use 10% of images 
-│   ├── labels     # use 10% of labels 
+│   ├── images     # used ~20% of images 
+│   ├── labels     # used ~20% of labels 
 ```
+
+We had total number of images and labels for Train and Val as the following:
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_total_number_of_images.png" alt="Total Number of Images for Train and Val" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_total_number_of_labels.png" alt="Total Number of Labels for Train and Val" width="400"/>
+        </tr>
+   </table>
 
 Lastly, we created **[config.yaml](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/config.yaml)** for YOLOv11 model training:
 ```yaml
@@ -435,7 +446,20 @@ train_results = model.train(
     epochs=10,  
 )
 ```
+The trained model can be found in **[cse151a_1.pt](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/cse151a_1.pt)**.
 
+### 2.7 - Model Flow Summary
+| Model Name | Dataset | Milestone | Misc. |
+|:-------:|:---------:|:---------:|:---------:|
+|  [Simple CNN](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN.ipynb)    | Duplicated O   | Milestone 3   | No fine tuning                  |
+|  [ResNet_v1](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/2nd_Model/2nd_model_ResNet_v1.ipynb)     | Duplicated O   | Milestone 4   | Different lr, optimization      |
+|  [ResNet_v2](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2.ipynb)     | Duplicated O   | Milestone 4   | Different lr, optimization      |
+|  [VGG16](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16.ipynb)         | Duplicated O   | Milestone 4   | Different lr, optimization      |
+|  [ResNet_v2](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2(dataset_fixed).ipynb)     | Duplicated X   | Milestone 5   | Used best ResNet_v2 version     |
+|  [VGG16](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16%20(dataset_fixed).ipynb)         | Duplicated X   | Milestone 5   | Used best VGG16 version         |
+|  [EfficientNet](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet.ipynb)  | Duplicated O   | Milestone 5   | Different lr, optimization      |
+|  [EfficientNet](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed).ipynb)  | Duplicated X   | Milestone 5   | Used best EfficientNet version  |
+|  [YOLOv11](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11.ipynb)       | Smaller Duplicated X   | Milestone 5   | No fine tuning, used smaller dataset  |
 
 ## 3. Models Results (Best)
 ### 3.1 - 1st Model (Simple CNN)
