@@ -703,12 +703,12 @@ After running YOLOv11 model, it created F1, PR, P, and R curve for the model as 
 <br>
     <table>
     <tr>
-        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/F1_curve.png" alt="F1 curve" width="400"></td>
-        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/PR_curve.png" alt="PR curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/F1_curve.png" alt="F1 curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/PR_curve.png" alt="PR curve" width="400"></td>
     </tr>
     <tr>
-        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/P_curve.png" alt="P curve" width="400"></td>
-        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/R_curve.png" alt="R curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/P_curve.png" alt="P curve" width="400"></td>
+        <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/R_curve.png" alt="R curve" width="400"></td>
     </tr>
     </table>
 
@@ -717,8 +717,8 @@ We got confusion matrix (normalized & unnormalized) as the following:
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/confusion_matrix.png" alt="Confusion Matrix" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/confusion_matrix_normalized.png" alt="Normalized Confusion Matrix" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/confusion_matrix.png" alt="Confusion Matrix" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/confusion_matrix_normalized.png" alt="Normalized Confusion Matrix" width="400"/>
         </tr>
    </table>
 
@@ -727,7 +727,7 @@ The model's loss, precision, recall, and other metrics are in **[results.png](ht
 <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/results.png" alt="Results" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model_Plots/results.png" alt="Results" width="600"/>
         </tr>
    </table>
 
@@ -740,6 +740,7 @@ The model's loss, precision, recall, and other metrics are in **[results.png](ht
         </tr>
    </table>
 Left plot is displaying the label for few validation images. Right plot is displaying the prediction on each label for those validation images. 
+<br>
 
 In addition, using **["6th_model_YOLOv11_4prediction.ipynb"](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_4prediction.ipynb)**, we predicted unseen images with the YOLOv11 model. Below is one of the prediction on unseen images:
 <br>
