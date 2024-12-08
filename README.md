@@ -200,9 +200,9 @@ There are 2 classes in total:
    <br>
    <table>
         <tr>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example.png" alt="Without Peter" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example2.png" alt="Without Peter2" width="400"/>
-            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example3.png" alt="Without Peter3" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example.jpg" alt="Without Peter" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example2.jpg" alt="Without Peter2" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/without_peter_example3.jpg" alt="Without Peter3" width="400"/>
         </tr>
    </table>
 
