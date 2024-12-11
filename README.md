@@ -54,7 +54,7 @@
       - [3.6.2 - Confusion Matrix](#362---confusion-matrix)
       - [3.6.3 - Model Training Result](#363---model-training-result)
       - [3.6.4 - Model's Prediciton on Validation Set and unseen data](#364---models-prediciton-on-validation-set-and-unseen-data)
-      - [3.6.5 - Model's Prediction on Video (S2E18)](#365---models-prediction-on-video-s2e18)
+      - [3.6.5 - Model's Prediction on Video (S2E18 unseen data)](#365---models-prediction-on-video-s2e18-unseen-data)
 - [Milestone 4: Second Model](#milestone-4-second-model)
   - [Second Model](#second-model)
     - [Training](#training)
@@ -547,6 +547,20 @@ print(accuracy)
 
 ```
 
+In addition to observing accuracy of model's prediction on unseen data using classified lists, we drew text which indicates the presence of Peter according to the Model's result on live video using java code - **[App.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App.java)** that uses [java.io.PrintWriter](https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html).
+
+ **[App_csv.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App_csv.java)** is diferent version of code which uses csv file of classified list instead of manually typing them inside the code. Example screenshots of video created by **App.java** are at below:
+
+<br>
+   <table>
+        <tr>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/App_java_example_1.png" alt="App.java Example 1" width="400"/>
+            <td><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/App_java_example_2.png" alt="App.java Example 2" width="400"/>
+        </tr>
+   </table>
+
+
+
 #### 3.3.2 - Initial Model (Milestone 4)
 <br>
    <table>
@@ -751,10 +765,36 @@ In addition, using **["6th_model_YOLOv11_4prediction.ipynb"](https://github.com/
    </table>
 It is considering Peter in images as Peter with 0.96 probability(confidence).
 
-#### 3.6.5 - Model's Prediction on Video (S2E18)
+#### 3.6.5 - Model's Prediction on Video (S2E18 unseen data)
+Lastly, using **["6th_model_YOLOv11_video_prediction.ipynb"](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_video_prediction.ipynb)**, we drew green box with Peter label to the frame where model predicts presence of Peter by higher than 0.5 threshold:
+```python
+...code snippets from  "6th_model_YOLOv11_video_prediction.ipynb"...
 
+threshold = 0.5
 
+while ret:
 
+    results = model(frame)[0]
+
+    for result in results.boxes.data.tolist():
+        x1, y1, x2, y2, score, class_id = result
+
+        if score > threshold:
+            cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4)
+            cv2.putText(frame, results.names[int(class_id)].upper(), (int(x1), int(y1 - 10)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
+
+    out.write(frame)
+    ret, frame = cap.read()
+```
+
+Then, we merged all the frames to convert to video back.
+
+Unlike, the video that we created using **"App.java"** for ResNet model, the model predicts Peter more accurately with green box moving along as Peter moves. The short video (full video is 22mins 27secs) can be found in [here](https://drive.google.com/file/d/1AUsivR5dPQ3cNXlRmMZGwXlVv_yBfJCS/view?usp=drive_link)(google drive) 
+
+> 🕒 **"Running '6th_model_YOLOv11_video_prediction.ipynb' took 108 minutes.**  
+> But, great things take time — Rome wasn't YOLO-ed in a day!" 😄
+> <br> - ChatGPT - 
 
 
 
