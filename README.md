@@ -624,7 +624,7 @@ True Negatives (TN): 552
 False Negatives (FN): 13
 ```
 
-Lastly, we got 74.11% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 75.30% of accuracy on predicting S2E18 unseen episode. 
 
 #### 4.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
 <br>
@@ -644,7 +644,7 @@ True Negatives (TN): 53
 False Negatives (FN): 17
 ```
 
-Lastly, we got 72.95% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 74.05% of accuracy on predicting S2E18 unseen episode. 
 
 
 ### 4.4 - 4th Model (VGG16)
@@ -676,7 +676,7 @@ True Negatives (TN): 54
 False Negatives (FN): 16
 ```
 
-Lastly, we got 76.72% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 78.22% of accuracy on predicting S2E18 unseen episode. 
 
 ### 4.5 - 5th Model (EfficientNet)
 #### 4.3.1 - Initial Model (Milestone 5)
@@ -697,7 +697,7 @@ True Negatives (TN): 564
 False Negatives (FN): 33
 ```
 
-Lastly, we got 76.75% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 78.40% of accuracy on predicting S2E18 unseen episode. 
 
 
 #### 4.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)
@@ -717,7 +717,7 @@ False Positives (FP): 20
 True Negatives (TN): 50
 False Negatives (FN): 8
 ```
-Lastly, we got 84.31% of accuracy on predicting S2E18 unseen episode. 
+Lastly, we got 86.23% of accuracy on predicting S2E18 unseen episode. 
 
 ### 4.6 - 6th Model (YOLOv11)
 #### 4.6.1 - F1, PR, P, R curves
