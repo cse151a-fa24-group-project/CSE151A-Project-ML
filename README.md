@@ -893,13 +893,13 @@ Issues like these are very tough to fix easily.
 
 The second common mistake is when the model constantly switches back and forth on whether Peter is there or not, when Peter is definitely present. A good example is when Peter first visits Mayor West’s office.
 
-https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip2.mp4
+[![Clip 2](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip2_thumbnail.jpeg)](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip2.mp4)
 
 This suggests that the model is right on the verge in predicting either way (0.5… vs 0.4…) during the scene. Perhaps by further tuning our model, we could improve our model during such scenes with some difficulty.
 
 The last common issue is flickers to wrong classifications. These are the easiest issues to correct. Simply by smoothing the output, these issues are easily eliminated.
 
-https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip3.mp4
+[![Clip 3](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip3_thumbnail.jpeg)](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/clip3.mp4)
 
 As for our Model 6, it seems promising. If we can improve upon it, it can have many uses, such as integrating into video-editing tools for easy Peter access or into a real-time application to detect Peter.
 
