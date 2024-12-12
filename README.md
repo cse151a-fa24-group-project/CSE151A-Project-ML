@@ -57,8 +57,11 @@
       - [4.6.4 - Model's Prediciton on Validation Set and unseen data](#464---models-prediciton-on-validation-set-and-unseen-data)
       - [4.6.5 - Model's Prediction on Video (S2E18 unseen data)](#465---models-prediction-on-video-s2e18-unseen-data)
   - [5. Discussion on Model's Methods \& Results](#5-discussion-on-models-methods--results)
-    - [5.1 - 1st Model (Simple CNN)](#51---1st-model-simple-cnn)
-    - [5.2 - 2nd Model (ResNet)](#52---2nd-model-resnet)
+    - [5.1 - 1st Model (Simple CNN) to 2nd Model (ResNet)](#51---1st-model-simple-cnn-to-2nd-model-resnet)
+      - [5.1.1 - Simple CNN](#511---simple-cnn)
+      - [5.1.2 - ResNet50\_v1](#512---resnet50_v1)
+    - [5.2 - 3rd Model (ResNet\_v2)](#52---3rd-model-resnet_v2)
+      - [5.2.1 - ResNet\_v2 with Unmodified Dataset](#521---resnet_v2-with-unmodified-dataset)
 - [Milestone 4: Second Model](#milestone-4-second-model)
   - [Second Model](#second-model)
     - [Training](#training)
@@ -88,7 +91,7 @@
 </details>
 
 ## 1. Introduction
-Our predictive task aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model may also prove useful in helping people create compilations featuring a character of their choosing.
+Our predictive task aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We are looking forward to explore image classification problems and hope that we can learn them from solving this predictive task. Ultimately, we hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model might prove useful in helping people create compilations featuring a character of their choosing.
 
 
 ## 2. Data Prep
@@ -804,11 +807,27 @@ Unlike, the video that we created using **"App.java"** for ResNet model, the mod
 
 
 ## 5. Discussion on Model's Methods & Results
-### 5.1 - 1st Model (Simple CNN)
+### 5.1 - 1st Model (Simple CNN) to 2nd Model (ResNet)
+#### 5.1.1 - Simple CNN
+For evaluation on our models, we chose validation loss as primary validation metrics with accuracy.
 
-### 5.2 - 2nd Model (ResNet)
+Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of validation accuracy. After manually testing several frames from this episode if it is correctly classified, we earned some idea about where the model may be inaccurate. 
+
+Looking at plots of validation metrics in [4.1 Section](#41---1st-model-simple-cnn), we confirmed that our model fits in the overfitting region of the fitting graph. The model achieved relatively low training loss (0.0155) and high training accuracy (0.9959). On the other hand, the model achieved relatively high training loss (0.5099) and low validation accuracy (0.8587). In addition, both validation loss and accuracy fluctuated significantly; validation loss spiked twice up to 7.8551 and 2.8553 before reaching 0.5099 at the final epoch.
+
+Therefore, our conclusion was that our model is too complex for our dataset, which led poor generalization to the validation set and overfitting issue (even though worked well on the training data).
+
+#### 5.1.2 - ResNet50_v1
+To fix this issue, we tried to improve our model by changing base model from simple CNN to ResNet50 pretrained model. We hoped to utilize the advantage of pretrained model as they provide a set of initial weights and biases that can be fine-tuned for a specific task in our own way.
+
+We specifically chose ResNet50 rather than ResNet with other depths (e.g. ResNet18, ResNet101, ResNet152) since it is the most intermediate one. Plots in [4.2 Section](#42---2nd-model-resnet50_v1) demonstrates that our ResNet model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
+
+Comparing to the simple 1st model (Simple CNN), we were able to confirm that our new model improved in large scale. First of all, the validation accuracy increased from 0.8587 to 0.9726. In addition, validation accuracy remains more stable and less fluctuated comparing to our previous model which had intense fluctuation, especially at epoch 3 and 7. However, this model hasn't solved the overfitting and generalization issue perfectly yet. 
 
 
+### 5.2 - 3rd Model (ResNet_v2)
+#### 5.2.1 - ResNet_v2 with Unmodified Dataset
+To make the model simpler not complex, instead of using ResNet18 or ResNet 34, we chose to reduce the total number of layers in ResNet_v1. In addition, instead of using MaxPooling, we adopted GlobalAveragePooling 
 
 
 
