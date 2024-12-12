@@ -57,11 +57,19 @@
       - [4.6.4 - Model's Prediciton on Validation Set and unseen data](#464---models-prediciton-on-validation-set-and-unseen-data)
       - [4.6.5 - Model's Prediction on Video (S2E18 unseen data)](#465---models-prediction-on-video-s2e18-unseen-data)
   - [5. Discussion on Model's Methods \& Results](#5-discussion-on-models-methods--results)
+    - [5.0 - Preprocessing Related](#50---preprocessing-related)
     - [5.1 - 1st Model (Simple CNN) to 2nd Model (ResNet)](#51---1st-model-simple-cnn-to-2nd-model-resnet)
       - [5.1.1 - Simple CNN](#511---simple-cnn)
       - [5.1.2 - ResNet50\_v1](#512---resnet50_v1)
     - [5.2 - 3rd Model (ResNet\_v2)](#52---3rd-model-resnet_v2)
       - [5.2.1 - ResNet\_v2 with Unmodified Dataset](#521---resnet_v2-with-unmodified-dataset)
+      - [5.2.2 - ResNet\_v2 with Modified Dataset](#522---resnet_v2-with-modified-dataset)
+    - [5.3 - 4th Model (VGG16)](#53---4th-model-vgg16)
+      - [5.3.1 - VGG16 with Unmodified Dataset](#531---vgg16-with-unmodified-dataset)
+      - [5.3.2 - VGG16 with Modified Dataset](#532---vgg16-with-modified-dataset)
+    - [5.4 - 5th Model (EfficientNet)](#54---5th-model-efficientnet)
+      - [5.4.1 - EfficientNet with Unmodified Dataset](#541---efficientnet-with-unmodified-dataset)
+      - [5.4.2 - EfficientNet with Modified Dataset](#542---efficientnet-with-modified-dataset)
     - [5.X - 6th Model (YOLOv11)](#5x---6th-model-yolov11)
   - [6. Conclusion](#6-conclusion)
   - [7. Statement of Collaboration](#7-statement-of-collaboration)
@@ -810,28 +818,51 @@ Unlike, the video that we created using **"App.java"** for ResNet model, the mod
 
 
 ## 5. Discussion on Model's Methods & Results
+### 5.0 - Preprocessing Related
+Before starting to build our models, we needed to manually create our own datasets. To do this, we scraped one frame every 500 ms between 6 episodes (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16), then decided if that frame contained Peter Griffin or not. This resulted in a dataset of 13939 images! To help the model run more efficiently, we decided to downscale all the images from a crisp 1444 × 1080 to a grainy 320 x 240. Despite this, we believe that the model’s ability to classify the images would not be hindered much if at all. Due to the nature of being an animated sitcom, every frame tended to be quite basic. Such, compressing the images does not lose much data.
+
+However, while working on a later milestone, we were frustrated by the disconnect between the validation accuracy and the accuracy on the unseen data. We figured that the validation accuracy was so high due to the characteristics of our train and validation datasets. Because of how we originally acquired the data, we had many frames that were identical or near-identical to each other. This unfairly benefits the validation dataset accuracy and would not be indicative of how the model would perform on unseen data. In other words, our train and validation datasets had a lot of unintentional overlap. To remedy this issue, we went back and removed these identical/near-identical frames from our dataset, leaving us with 1806 images, just 13% of the original dataset! The resulting models took a hit on validation accuracy, but had noticeably more similar accuracy between the validation and unseen data, hopefully indicating that our model was doing a better job at generalizing. A useful side effect of the large decrease of dataset size was the much-improved speed of the model.
+
 ### 5.1 - 1st Model (Simple CNN) to 2nd Model (ResNet)
 #### 5.1.1 - Simple CNN
-For evaluation on our models, we chose validation loss as primary validation metrics with accuracy.
+As with most image classification models, we decided to use binary cross-entropy as our loss function. We also decided to use accuracy as a metric, since true positives, false positives, true negatives, and false negatives are all very important to our goals.
 
-Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of validation accuracy. After manually testing several frames from this episode if it is correctly classified, we earned some idea about where the model may be inaccurate. 
+Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of validation accuracy. Then, after manually testing several frames from this episode if it is correctly classified, we earned some idea about where the model may be inaccurate. 
 
-Looking at plots of validation metrics in [4.1 Section](#41---1st-model-simple-cnn), we confirmed that our model fits in the overfitting region of the fitting graph. The model achieved relatively low training loss (0.0155) and high training accuracy (0.9959). On the other hand, the model achieved relatively high training loss (0.5099) and low validation accuracy (0.8587). In addition, both validation loss and accuracy fluctuated significantly; validation loss spiked twice up to 7.8551 and 2.8553 before reaching 0.5099 at the final epoch.
+Looking at plots of validation metrics in [4.1 Section](#41---1st-model-simple-cnn), we confirmed that our model fits in the overfitting region of the fitting graph. The model achieved relatively low training loss (0.0155) and high training accuracy (0.9959). On the other hand, the model achieved relatively high training loss (0.5099) and low validation accuracy (0.8587). In addition, both validation loss and accuracy fluctuated significantly; validation loss spiked twice up to 7.8551 and 2.8553 before reaching 0.5099 at the final epoch. 
 
-Therefore, our conclusion was that our model is too complex for our dataset, which led poor generalization to the validation set and overfitting issue (even though worked well on the training data).
+Therefore, our conclusion was that our model is too complex for our dataset, which led poor generalization to the validation set and overfitting issue (even though worked well on the training data). However, it showed some promise. The model, with its validation accuracy of ~86%, performed much better than random guessing, suggesting that CNNs were up to the task. 
 
 #### 5.1.2 - ResNet50_v1
 To fix this issue, we tried to improve our model by changing base model from simple CNN to ResNet50 pretrained model. We hoped to utilize the advantage of pretrained model as they provide a set of initial weights and biases that can be fine-tuned for a specific task in our own way.
 
-We specifically chose ResNet50 rather than ResNet with other depths (e.g. ResNet18, ResNet101, ResNet152) since it is the most intermediate one. Plots in [4.2 Section](#42---2nd-model-resnet50_v1) demonstrates that our ResNet model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
+In the end, we decided on using ResNet50, a model in the ResNet family that was widely used for image classification, as the base of our second model. Rather than using ResNet with other depths (e.g. ResNet18, ResNet101, ResNet152) we chose ResNet50 specifically since it is the most intermediate one so that we can avoid risk of having too small or too large models. Plots in [4.2 Section](#42---2nd-model-resnet50_v1) demonstrates that our ResNet model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
 
-Comparing to the simple 1st model (Simple CNN), we were able to confirm that our new model improved in large scale. First of all, the validation accuracy increased from 0.8587 to 0.9726. In addition, validation accuracy remains more stable and less fluctuated comparing to our previous model which had intense fluctuation, especially at epoch 3 and 7. However, this model hasn't solved the overfitting and generalization issue perfectly yet. 
+Comparing to the simple 1st model (Simple CNN), we were able to confirm that our new model improved in large scale. First of all, the validation accuracy increased from 0.8587 to 0.9726. In addition, validation accuracy remains more stable and less fluctuated comparing to our previous model which had intense fluctuation, especially at epoch 3 and 7. However, this model hasn't solved the overfitting and generalization issue perfectly yet. In addition, the model size was pretty big (21,500,929 trainable parameters), so we decided to decrease the model size by alternating the layer structure since an overcomplicated structure may result in overfitting later.
 
 
 ### 5.2 - 3rd Model (ResNet_v2)
 #### 5.2.1 - ResNet_v2 with Unmodified Dataset
-To make the model simpler not complex, instead of using ResNet18 or ResNet 34, we chose to reduce the total number of layers in ResNet_v1. In addition, instead of using MaxPooling, we adopted GlobalAveragePooling 
+In ResNet50_v2, we decided to decrease the number of additional layers to improve generalizability. Additionally, by switching from using MaxPooling to GlobalAveragePooling2D, we hoped to reduce the tendency of overfitting and to help insulate our model from outliers.
 
+Training and testing ResNet50_v2 showed that this model retained the effectiveness of ResNet50_v1, with training and validation accuracies at 95.59% and 95.85% respectively. Despite this, it performed much more poorly on the unseen episode, with an accuracy of 75.3%.To test the accuracy of the unseen data, we manually classified every tenth frame of the episode S2E18 for a grand total of 6540 images. Then, we have the model classify the images, and compare the two results. It is at this point where we realized that having identical or nearly-identical images in the datasets can result in unintended “cheating” of our model. Since we just randomly assigned training and validation dataset, it’s possible that both dataset have very similar images, which will result in higher accuracy than what the actual model’s capacity can result in.
+
+#### 5.2.2 - ResNet_v2 with Modified Dataset
+However, removing duplicated images did not directly increase the model’s performance. As expected, the model accuracy decreased to 91.38% and 81.11% after removal. However, it was a good sign that the accuracy on the unseen data remained nearly the same, at 74.1%.
+
+### 5.3 - 4th Model (VGG16)
+#### 5.3.1 - VGG16 with Unmodified Dataset
+We also decided to test the effectiveness of VGG16 as our base. VGG16, like ResNet50, is a pretrained model that is commonly used for image classification. A key difference between the two is the number of layers; VGG16 has 16 layers while ResNet50 has 50 layers. We wanted to see if the less complex model that is VGG16 would help our model generalize better. The resulting accuracy of our fourth model was 90.73% for training and 91.61% for validation. It is important to note that the validation accuracy was higher than the training accuracy. This may have two explanations. The first is underfitting, meaning that the model isn’t trained enough. We found this to be unlikely since we trained it for 10 epochs. The second is unlucky train and test splits. Since we did not remove the duplicated images in the original dataset, if the validation dataset contained many duplicates of images in the training dataset, it becomes possible for the validation accuracy to be higher than the training accuracy.
+
+#### 5.3.2 - VGG16 with Modified Dataset
+As we saw in our third model, the accuracy of the model decreased after removing the duplicated images, with a result of 88.67% and 82.22%. The unseen accuracy rose to 78.2%, which suggests that VGG16 would be better than the ResNet models moving forward.
+
+### 5.4 - 5th Model (EfficientNet)
+#### 5.4.1 - EfficientNet with Unmodified Dataset
+This time, we decided to utilize the newest pretrained model so far: EfficientNet. As the name suggests, EfficientNet promised to increase efficiency while maintaining accuracy. As our base model, EfficientNet delivered. The accuracy of our fifth model dramatically improved compared to our previous models, sitting at 95% for training and validation. At 78.4%, this model had the highest accuracy of any model before making changes to the dataset.
+
+#### 5.4.2 - EfficientNet with Modified Dataset
+Despite the dataset change, our EfficientNet-based model still maintained pretty high values (92.76% & 84.44%). Most importantly, among the models trained on the new dataset, this model resulted in the highest accuracy for the unseen episode by far, at a scorching 86.2%. This is almost the same as the validation accuracy, which means that the dataset is well organized after removal. After compiling and watching the video with these predictions, it passes the eye test. The noticeable mistakes were few, with one being a scene in the dark where Peter’s face is only mostly visible.
 
 ### 5.X - 6th Model (YOLOv11)
 First of all, even though we explored YOLOv11 model at the end of this project, this doesn't mean that we are trying to settle down at YOLOv11 as our final model. Since we employed YOLOv11 with minimal configuration, relying on default parameters and pretrained weights without extensive hyperparameter tuning or architectural adjustments. This "out-of-the-box" approach provided quick insights but did not fully leverage YOLOv11's potential for optimization and performance enhancement. We are considering this model to be "preliminary trial" and to be our next step to further explore after this class ends; experience with YOLO model was really valuable and fun though. We still wanted to analyze the results from YOLOv11 model and discuss about it (to more review our learnings from this class and apply them to this project).
