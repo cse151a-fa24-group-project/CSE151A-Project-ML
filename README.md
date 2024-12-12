@@ -55,7 +55,7 @@ x<div align="center">
       - [4.6.2 - Confusion Matrix](#462---confusion-matrix)
       - [4.6.3 - Model Training Result](#463---model-training-result)
       - [4.6.4 - Model's Prediciton on Validation Set and unseen data](#464---models-prediciton-on-validation-set-and-unseen-data)
-      - [4.6.5 - Model's Prediction on Video (S2E18 unseen data)](#465---models-prediction-on-video-s2e18-unseen-data)
+      - [4.6.5 - Model's Prediction on Video (S2E08 unseen data)](#465---models-prediction-on-video-s2e08-unseen-data)
   - [5. Discussion on Model's Methods \& Results](#5-discussion-on-models-methods--results)
     - [5.0 - Preprocessing Related](#50---preprocessing-related)
     - [5.1 - 1st Model (Simple CNN) to 2nd Model (ResNet)](#51---1st-model-simple-cnn-to-2nd-model-resnet)
@@ -785,7 +785,7 @@ In addition, using **["6th_model_YOLOv11_4prediction.ipynb"](https://github.com/
    </table>
 It is considering Peter in images as Peter with 0.96 probability(confidence).
 
-#### 4.6.5 - Model's Prediction on Video (S2E18 unseen data)
+#### 4.6.5 - Model's Prediction on Video (S2E08 unseen data)
 Lastly, using **["6th_model_YOLOv11_video_prediction.ipynb"](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_video_prediction.ipynb)**, we drew green box with Peter label to the frame where model predicts presence of Peter by higher than 0.5 threshold:
 ```python
 ...code snippets from  "6th_model_YOLOv11_video_prediction.ipynb"...
@@ -862,7 +862,7 @@ As we saw in our third model, the accuracy of the model decreased after removing
 This time, we decided to utilize the newest pretrained model so far: EfficientNet. As the name suggests, EfficientNet promised to increase efficiency while maintaining accuracy. As our base model, EfficientNet delivered. The accuracy of our fifth model dramatically improved compared to our previous models, sitting at 95% for training and validation. At 78.4%, this model had the highest accuracy of any model before making changes to the dataset.
 
 #### 5.4.2 - EfficientNet with Modified Dataset
-Despite the dataset change, our EfficientNet-based model still maintained pretty high values (92.76% & 84.44%). Most importantly, among the models trained on the new dataset, this model resulted in the highest accuracy for the unseen episode by far, at a scorching 86.2%. This is almost the same as the validation accuracy, which means that the dataset is well organized after removal. After compiling and watching the video with these predictions, it passes the eye test. The noticeable mistakes were few, with one being a scene in the dark where Peter’s face is only mostly visible.
+Despite the dataset change, our EfficientNet-based model still maintained pretty high values (92.76% & 84.44%). Most importantly, among the models trained on the new dataset, this model resulted in the highest accuracy for the unseen episode by far, at a scorching 86.2%. This is almost the same as the validation accuracy, which means that the dataset is well organized after removal. After compiling and watching the [episode](https://drive.google.com/file/d/1g4039k4WD_WzaZ3LCVzKiOtMuVWTuE1Q/view?usp=sharing) with these predictions, it passes the eye test. The noticeable mistakes were few, with one being a scene in the dark where Peter’s face is only mostly visible.
 
 ### 5.5 - 6th Model (YOLOv11)
 First of all, even though we explored YOLOv11 model at the end of this project, this doesn't mean that we are trying to settle down at YOLOv11 as our final model. Since we employed YOLOv11 with minimal configuration, relying on default parameters and pretrained weights without extensive hyperparameter tuning or architectural adjustments. This "out-of-the-box" approach provided quick insights but did not fully leverage YOLOv11's potential for optimization and performance enhancement. We are considering this model to be "preliminary trial" and to be our next step to further explore after this class ends; experience with YOLO model was really valuable and fun though. We still wanted to analyze the results from YOLOv11 model and discuss about it (to more review our learnings from this class and apply them to this project).
