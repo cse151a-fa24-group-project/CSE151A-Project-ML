@@ -70,7 +70,7 @@
     - [5.4 - 5th Model (EfficientNet)](#54---5th-model-efficientnet)
       - [5.4.1 - EfficientNet with Unmodified Dataset](#541---efficientnet-with-unmodified-dataset)
       - [5.4.2 - EfficientNet with Modified Dataset](#542---efficientnet-with-modified-dataset)
-    - [5.X - 6th Model (YOLOv11)](#5x---6th-model-yolov11)
+    - [5.5 - 6th Model (YOLOv11)](#55---6th-model-yolov11)
   - [6. Conclusion](#6-conclusion)
   - [7. Statement of Collaboration](#7-statement-of-collaboration)
 - [Milestone 4: Second Model](#milestone-4-second-model)
@@ -864,7 +864,7 @@ This time, we decided to utilize the newest pretrained model so far: EfficientNe
 #### 5.4.2 - EfficientNet with Modified Dataset
 Despite the dataset change, our EfficientNet-based model still maintained pretty high values (92.76% & 84.44%). Most importantly, among the models trained on the new dataset, this model resulted in the highest accuracy for the unseen episode by far, at a scorching 86.2%. This is almost the same as the validation accuracy, which means that the dataset is well organized after removal. After compiling and watching the video with these predictions, it passes the eye test. The noticeable mistakes were few, with one being a scene in the dark where Peter’s face is only mostly visible.
 
-### 5.X - 6th Model (YOLOv11)
+### 5.5 - 6th Model (YOLOv11)
 First of all, even though we explored YOLOv11 model at the end of this project, this doesn't mean that we are trying to settle down at YOLOv11 as our final model. Since we employed YOLOv11 with minimal configuration, relying on default parameters and pretrained weights without extensive hyperparameter tuning or architectural adjustments. This "out-of-the-box" approach provided quick insights but did not fully leverage YOLOv11's potential for optimization and performance enhancement. We are considering this model to be "preliminary trial" and to be our next step to further explore after this class ends; experience with YOLO model was really valuable and fun though. We still wanted to analyze the results from YOLOv11 model and discuss about it (to more review our learnings from this class and apply them to this project).
 
 YOLO (You Only Look Once) models are specifically designed for real-time object detection. This can process frames with high detection accuracy quickly. In addition, it is easy relatively easy to deploy and has well-documented [instructions](https://docs.ultralytics.com/ko/models/yolo11/) on how to use this model with active community. Lastly, YOLO is still evolving and has gained popularity in industry since it has been released. Thus, we chose to explore on YOLOv11 before this class finishes not only for testing out better model performance, but also for future work. 
