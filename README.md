@@ -912,16 +912,16 @@ We can further expand model 6 to detect other characters in Family Guy; or apply
 
 
 ## 7. Statement of Collaboration
-**🌟 Team Contributions: The Magnificent Six 🌟**
+**🌟 Team Contributions: The Magnificent Six 🌟** <br>
 👥 Contributors
-| Avatar | Name             | Role                 | Contribution                                                                                  | Email                   |
-|--------|------------------|----------------------|----------------------------------------------------------------------------------------------|-------------------------|
-| ![Jacob](https://github.com/JoeBobby0.png?size=50) | Jacob Zhang     | Project Manager    | Coordinated team workflow, set up meetings, and ensured deadlines were met. Acted as a liaison between team members, offering support in coding, writing, and data collection. Contributed portions of work across departments to help maintain balance and progress. Reviewed final outputs for quality and completeness.                 | jaz007@ucsd.edu        |
-| ![Jaewon](https://github.com/rabongHan.png?size=50) | Jaewon Han      | Lead Developer & Content Creator         | Designed and implemented core features of the project, including key algorithms and functionalities. Debugged and optimized code to ensure performance. Additionally, contributed to creating content for documentation, helping articulate the technical aspects of the project in the README and writeups.                       | jah034@ucsd.edu        |
-| ![Patric](https://github.com/ptsanchez.png?size=50) | Patric Sanchez   | Data Specialist         | Collected dataset for our model. Managed dataset, removed duplicates, and pre-processed data for model training.                               | p3sanchez@ucsd.edu     |
-| ![Yoongon](https://github.com/Yoongon-Kim.png?size=50) | Yoongon Kim      | Developer & Editor   |  Played a dual role by contributing to both development and documentation. Implemented core project features and resolved complex coding issues. Edited and refined written content for the README and other documentation to ensure consistency, tone, and professionalism.             | ygk001@ucsd.edu        |
-|  | Ruhua Pan        | Tester & Data Specialist | Provided feedback on other team members' work to ensure cohesion across all aspects of the project and collected dataset for our model.                     | oriiii932@gmail.com    |
-| ![Hou](https://github.com/houkinwan.png?size=50) | Hou Wan          | Algorithm Specialist   | Gave a idea/insight of which model/structure/algorithm we should use and how to improve them.             | hwan@ucsd.edu          |
+| Name             | Role                 | Contribution                                                                                  | Email                   |
+|------------------|----------------------|----------------------------------------------------------------------------------------------|-------------------------|
+| Jacob Zhang     | Project Manager    | Coordinated team workflow, set up meetings, and ensured deadlines were met. Acted as a liaison between team members, offering support in coding, writing, and data collection. Contributed portions of work across departments to help maintain balance and progress. Reviewed final outputs for quality and completeness.                 | jaz007@ucsd.edu        |
+| Jaewon Han      | Lead Developer & Content Creator         | Designed and implemented core features of the project, including key algorithms and functionalities. Debugged and optimized code to ensure performance. Additionally, contributed to creating content for documentation, helping articulate the technical aspects of the project in the README and writeups.                       | jah034@ucsd.edu        |
+| Patric Sanchez   | Data Specialist         | Collected dataset for our model. Managed dataset, removed duplicates, and pre-processed data for model training.                               | p3sanchez@ucsd.edu     |
+| Yoongon Kim      | Developer & Editor   |  Played a dual role by contributing to both development and documentation. Implemented core project features and resolved complex coding issues. Edited and refined written content for the README and other documentation to ensure consistency, tone, and professionalism.             | ygk001@ucsd.edu        |
+| Ruhua Pan        | Tester & Data Specialist | Provided feedback on other team members' work to ensure cohesion across all aspects of the project and collected dataset for our model.                     | oriiii932@gmail.com    |
+| Hou Wan          | Algorithm Specialist   | Gave a idea/insight of which model/structure/algorithm we should use and how to improve them.             | hwan@ucsd.edu          |
 <br>
 <a href="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/graphs/contributors">
 <img width="300" src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/contributor_image.png">
