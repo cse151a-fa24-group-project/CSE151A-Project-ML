@@ -102,7 +102,7 @@ x<div align="center">
 </details>
 
 ## 1. Introduction
-Our predictive task aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We are looking forward to explore image classification problems and hope that we can learn them from solving this predictive task. Ultimately, we hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model might prove useful in helping people create compilations featuring a character of their choosing.
+Our model aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We are looking to explore image classification problems and hope that we can learn them from solving this predictive task. Ultimately, we hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model might also prove useful in helping people create compilations featuring a character of their choosing.
 
 
 ## 2. Data Prep
