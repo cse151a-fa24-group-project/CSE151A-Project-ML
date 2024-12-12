@@ -11,50 +11,54 @@
 - [Milestone 5: Final Submission](#milestone-5-final-submission)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
-    - [1.1 - Extraction Method](#11---extraction-method)
-    - [1.2 - Number of Classes and Example Classes](#12---number-of-classes-and-example-classes)
-    - [1.3 - Size and Number of Images](#13---size-and-number-of-images)
-      - [1.3.1 - Size of Images](#131---size-of-images)
-      - [1.3.2 - Number of Images](#132---number-of-images)
-  - [2. Models Methods](#2-models-methods)
-    - [2.1 - 1st Model (Simple CNN)](#21---1st-model-simple-cnn)
-      - [2.1.1 - Preprocessing](#211---preprocessing)
-      - [2.1.2 - Training](#212---training)
-    - [2.2 - 2nd Model (ResNet50\_v1)](#22---2nd-model-resnet50_v1)
-      - [2.2.1 - Preprocessing](#221---preprocessing)
-      - [2.2.2 - Training](#222---training)
-    - [2.3 - 3rd Model (ResNet50\_v2)](#23---3rd-model-resnet50_v2)
-      - [2.3.1 - Preprocessing](#231---preprocessing)
-      - [2.3.2 - Training](#232---training)
-    - [2.4 - 4th Model (VGG16)](#24---4th-model-vgg16)
-      - [2.4.1 - Preprocessing](#241---preprocessing)
-      - [2.4.2 - Training](#242---training)
-    - [2.5 - 5th Model (EfficientNet)](#25---5th-model-efficientnet)
-      - [2.5.1 - Preprocessing](#251---preprocessing)
-      - [2.5.2 - Training](#252---training)
-    - [2.6 - 6th Model (YOLOv11)](#26---6th-model-yolov11)
-      - [2.6.1 - Preprocessing](#261---preprocessing)
-      - [2.6.2 - Training](#262---training)
-    - [2.7 - Model Flow Summary](#27---model-flow-summary)
-  - [3. Models Results (Best)](#3-models-results-best)
+  - [2. Data Prep](#2-data-prep)
+    - [2.1 - Extraction Method](#21---extraction-method)
+    - [2.2 - Number of Classes and Example Classes](#22---number-of-classes-and-example-classes)
+    - [2.3 - Size and Number of Images](#23---size-and-number-of-images)
+      - [2.3.1 - Size of Images](#231---size-of-images)
+      - [2.3.2 - Number of Images](#232---number-of-images)
+  - [3. Models Methods](#3-models-methods)
     - [3.1 - 1st Model (Simple CNN)](#31---1st-model-simple-cnn)
+      - [3.1.1 - Preprocessing](#311---preprocessing)
+      - [3.1.2 - Training](#312---training)
     - [3.2 - 2nd Model (ResNet50\_v1)](#32---2nd-model-resnet50_v1)
+      - [3.2.1 - Preprocessing](#321---preprocessing)
+      - [3.2.2 - Training](#322---training)
     - [3.3 - 3rd Model (ResNet50\_v2)](#33---3rd-model-resnet50_v2)
-      - [3.3.1 - New Codes to Predict S2E18 (Milestone 5)](#331---new-codes-to-predict-s2e18-milestone-5)
-      - [3.3.2 - Initial Model (Milestone 4)](#332---initial-model-milestone-4)
-      - [3.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)](#333---model-using-dataset-after-duplicated-images-removal-milestone-5)
+      - [3.3.1 - Preprocessing](#331---preprocessing)
+      - [3.3.2 - Training](#332---training)
     - [3.4 - 4th Model (VGG16)](#34---4th-model-vgg16)
-      - [3.4.1 - Initial Model  (Milestone 4)](#341---initial-model--milestone-4)
-      - [3.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)](#342---model-using-dataset-after-duplicated-images-removal-milestone-5)
+      - [3.4.1 - Preprocessing](#341---preprocessing)
+      - [3.4.2 - Training](#342---training)
     - [3.5 - 5th Model (EfficientNet)](#35---5th-model-efficientnet)
-      - [3.3.1 - Initial Model (Milestone 5)](#331---initial-model-milestone-5)
-      - [3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)](#332---model-using-dataset-afer-duplicated-images-removal-milestone-5)
+      - [3.5.1 - Preprocessing](#351---preprocessing)
+      - [3.5.2 - Training](#352---training)
     - [3.6 - 6th Model (YOLOv11)](#36---6th-model-yolov11)
-      - [3.6.1 - F1, PR, P, R curves](#361---f1-pr-p-r-curves)
-      - [3.6.2 - Confusion Matrix](#362---confusion-matrix)
-      - [3.6.3 - Model Training Result](#363---model-training-result)
-      - [3.6.4 - Model's Prediciton on Validation Set and unseen data](#364---models-prediciton-on-validation-set-and-unseen-data)
-      - [3.6.5 - Model's Prediction on Video (S2E18 unseen data)](#365---models-prediction-on-video-s2e18-unseen-data)
+      - [3.6.1 - Preprocessing](#361---preprocessing)
+      - [3.6.2 - Training](#362---training)
+    - [3.7 - Model Flow Summary](#37---model-flow-summary)
+  - [4. Models Results (Best)](#4-models-results-best)
+    - [4.1 - 1st Model (Simple CNN)](#41---1st-model-simple-cnn)
+    - [4.2 - 2nd Model (ResNet50\_v1)](#42---2nd-model-resnet50_v1)
+    - [4.3 - 3rd Model (ResNet50\_v2)](#43---3rd-model-resnet50_v2)
+      - [4.3.1 - New Codes to Predict S2E18 (Milestone 5)](#431---new-codes-to-predict-s2e18-milestone-5)
+      - [4.3.2 - Initial Model (Milestone 4)](#432---initial-model-milestone-4)
+      - [4.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)](#433---model-using-dataset-after-duplicated-images-removal-milestone-5)
+    - [4.4 - 4th Model (VGG16)](#44---4th-model-vgg16)
+      - [4.4.1 - Initial Model  (Milestone 4)](#441---initial-model--milestone-4)
+      - [4.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)](#442---model-using-dataset-after-duplicated-images-removal-milestone-5)
+    - [4.5 - 5th Model (EfficientNet)](#45---5th-model-efficientnet)
+      - [4.3.1 - Initial Model (Milestone 5)](#431---initial-model-milestone-5)
+      - [4.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)](#432---model-using-dataset-afer-duplicated-images-removal-milestone-5)
+    - [4.6 - 6th Model (YOLOv11)](#46---6th-model-yolov11)
+      - [4.6.1 - F1, PR, P, R curves](#461---f1-pr-p-r-curves)
+      - [4.6.2 - Confusion Matrix](#462---confusion-matrix)
+      - [4.6.3 - Model Training Result](#463---model-training-result)
+      - [4.6.4 - Model's Prediciton on Validation Set and unseen data](#464---models-prediciton-on-validation-set-and-unseen-data)
+      - [4.6.5 - Model's Prediction on Video (S2E18 unseen data)](#465---models-prediction-on-video-s2e18-unseen-data)
+  - [5. Discussion on Model's Methods \& Results](#5-discussion-on-models-methods--results)
+    - [5.1 - 1st Model (Simple CNN)](#51---1st-model-simple-cnn)
+    - [5.2 - 2nd Model (ResNet)](#52---2nd-model-resnet)
 - [Milestone 4: Second Model](#milestone-4-second-model)
   - [Second Model](#second-model)
     - [Training](#training)
@@ -86,9 +90,11 @@
 ## 1. Introduction
 Our predictive task aims to recognize whether Peter Griffin is on screen during any given moment of a Family Guy episode. We hope that our model will allow those affected by prosopagnosia to more easily enjoy television shows, especially when applied to live-action formats. Our model may also prove useful in helping people create compilations featuring a character of their choosing.
 
+
+## 2. Data Prep
 The basic preparation for our model includes the following steps:
 
-### 1.1 - Extraction Method
+### 2.1 - Extraction Method
 To check which episode includes Peter Griffin, we used **[Family Guy Dataset](https://www.kaggle.com/datasets/iamsouravbanerjee/family-guy-dataset/data)** from Kaggle. This dataset includes various information about each Episode/Season of Family Guy. We performed data exploration on this dataset as the **[Family_Guy_Episode_Extract.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Family_Guy_Episode_Extract.ipynb)**:
 <details>
 <summary>Click to collapse code</summary>
@@ -191,7 +197,7 @@ Then we used following two methods to extract frames from Family Guy episodes th
     ```
     </details>
 
-### 1.2 - Number of Classes and Example Classes
+### 2.2 - Number of Classes and Example Classes
 There are 2 classes in total:
 1. Presence of Peter Griffin
    <br>
@@ -214,13 +220,13 @@ There are 2 classes in total:
         </tr>
    </table>
 
-### 1.3 - Size and Number of Images
-#### 1.3.1 - Size of Images
+### 2.3 - Size and Number of Images
+#### 2.3.1 - Size of Images
 Depending on the extraction methods that each group member used, the image size varies.
 1. 1440x1080 png (from Video Frame Extractor)
 2. 320x240 jpg (from Frame_Extractor.ipynb*)
 
-#### 1.3.2 - Number of Images
+#### 2.3.2 - Number of Images
 1. Number of images in each episode (With_Peter vs Without_Peter)
    <br><img src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/Data_Prep/Dataset_number_of_Images_per_Episode.png" alt="Number of images in each episode" width="800"/>
 2. Total number of images across all episodes
@@ -232,11 +238,11 @@ Depending on the extraction methods that each group member used, the image size 
 
 
 
-## 2. Models Methods
-### 2.1 - 1st Model (Simple CNN)
-#### 2.1.1 - Preprocessing
+## 3. Models Methods
+### 3.1 - 1st Model (Simple CNN)
+#### 3.1.1 - Preprocessing
 We restricted our dataset to images from a singular episode (S5E04) with downscaling to 320x240 from 1440x1080 for faster downloading and training speed. We splitted training and validation set in 9:1 ratio. 
-#### 2.1.2 - Training 
+#### 3.1.2 - Training 
 We applied Geek-for-Geek's **[cat-vs-dog model](https://www.geeksforgeeks.org/cat-dog-classification-using-convolutional-neural-network-in-python/)** and fit it for our image data. Running **[1st model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN.ipynb)** yielded promising signs, yet was clearly not in tune for the specific problem we are tackling:
 ```python
 model = tf.keras.models.Sequential([
@@ -264,10 +270,10 @@ model = tf.keras.models.Sequential([
 
 More details for our first model can be found in [Milestone 3](#milestone-3-pre-processing) section
 
-### 2.2 - 2nd Model (ResNet50_v1)
-#### 2.2.1 - Preprocessing
+### 3.2 - 2nd Model (ResNet50_v1)
+#### 3.2.1 - Preprocessing
 Unlike our 1st model, we decided to use all images (S1E05, S2E01, S3E10, S5E04, S5E05, S5E16) by combinining all image folders into one folder in our google drive. We also splitted training and validation set in 9:1 ratio. 
-#### 2.2.2 - Training
+#### 3.2.2 - Training
 We used pretrained model (ResNet50) as our base model and left other model setup same as our 1st model. **[Second Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/2nd_Model/2nd_model_ResNet_v1.ipynb)** had model layers as the following:
 ```python
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
@@ -288,8 +294,8 @@ model = tf.keras.models.Sequential([
 ```
 More details for our Second model can be found in [Milestone 4](#milestone-4-second-model) section
 
-### 2.3 - 3rd Model (ResNet50_v2)
-#### 2.3.1 - Preprocessing
+### 3.3 - 3rd Model (ResNet50_v2)
+#### 3.3.1 - Preprocessing
 With the same setup as our 2nd model, we added one more preprocessing step using **["preprocess_input"](https://www.tensorflow.org/api_docs/python/tf/keras/applications/resnet/preprocess_input)** function:
 
 ```python
@@ -306,7 +312,7 @@ test_datagen = test_datagen.map(preprocess_dataset)
 ```
 Later, during Milestone 5, we removed duplicated images (frames that have similar background and character setups) from our dataset. These, duplicated images are created since we set distance between frames as 500ms so that we can get 2 frames per second during extraction process mentioned at [1.1 - Extraction Method](#11---extraction-method)
 
-#### 2.3.2 - Training 
+#### 3.3.2 - Training 
 We came up with simpler model with ResNet50 base model from our 3rd model. In addition, instead of using MaxPooling, we chose to use GlobalAveragePooling2D. **[Thrid Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/3rd_Model/3rd_model_ResNet_v2.ipynb)** had model layers as the following:
 ```python
 base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
@@ -325,8 +331,8 @@ The Third Model that used dataset where duplicated images are removed can be fou
 
 More details for our Third model can be found in [Milestone 4](#milestone-4-second-model) section
 
-### 2.4 - 4th Model (VGG16)
-#### 2.4.1 - Preprocessing
+### 3.4 - 4th Model (VGG16)
+#### 3.4.1 - Preprocessing
 Instead of using resnet50's preprocess_input function, we adopted **["preprocess_input"](https://www.tensorflow.org/api_docs/python/tf/keras/applications/vgg16/preprocess_input)** function from vgg16:
 ```python
 from tensorflow.keras.applications.vgg16 import preprocess_input
@@ -342,7 +348,7 @@ test_datagen = test_datagen.map(preprocess_dataset)
 ```
 Similar to ResNet_v2, later during Milestone 5, we removed duplicated images from our dataset. 
 
-#### 2.4.2 - Training
+#### 3.4.2 - Training
 With the same setup as our ResNet model, we changed the base model to VGG16 from ResNet50. **[Fourth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16.ipynb)** had model layers as the following:
 ```python
 base_model = VGG16(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
@@ -364,9 +370,9 @@ The Fourth Model that used dataset where duplicated images are removed can be fo
 
 More details for our Fourth model can be found in [Milestone 4](#milestone-4-second-model) section
 
-### 2.5 - 5th Model (EfficientNet)
+### 3.5 - 5th Model (EfficientNet)
 This model was created during Milestone 5. 
-#### 2.5.1 - Preprocessing
+#### 3.5.1 - Preprocessing
 First, we tested with the dataset we used for ResNet50_v1. Then, we removed duplicated images (frames that have similar background and character setups) from our dataset like ResNet_v2 and VGG16.
 
 In addition, we utilized **["preprocess_input](https://www.tensorflow.org/api_docs/python/tf/keras/applications/efficientnet/preprocess_input)** function from resnet:
@@ -381,7 +387,7 @@ def preprocess_dataset(image, label):
 train_datagen = train_datagen.map(preprocess_dataset)
 test_datagen = test_datagen.map(preprocess_dataset)
 ```
-#### 2.5.2 - Training
+#### 3.5.2 - Training
 With the same setup as our ResNet model, we changed the base model to EfficientNet. **[Fifth Model](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet.ipynb)** had model layers as the following:
 ```python
 base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(320, 240, 3))
@@ -398,9 +404,9 @@ model = tf.keras.models.Sequential([
 ```
 The Fourth Model that used dataset where duplicated images are removed can be found **[here](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed).ipynb)**; this version of model was also created during Milestone 5.
 
-### 2.6 - 6th Model (YOLOv11)
+### 3.6 - 6th Model (YOLOv11)
 This model was created during Milestone 5 for preliminary model for future usage. 
-#### 2.6.1 - Preprocessing
+#### 3.6.1 - Preprocessing
 We added an labeling annotation for Peter using **[CVAT](https://www.cvat.ai/)** to the images from the dataset where we removed the duplicated images. Below two images are showing how we labeled/annotated Peter using CVAT:
 <br>
    <table>
@@ -441,7 +447,7 @@ nc: 1 # number of classes
 names: ["Peter"] # name of class
 ```
 
-#### 2.6.2 - Training 
+#### 3.6.2 - Training 
 Since this YOLOv11 model was created for preliminary purpose, we didn't do hyperparameter tuning or experimenting with different YOLO variants. The training is done through **[6th_model_YOLOv11.ipynb](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11.ipynb)**:
 ```python
 from ultralytics import YOLO
@@ -455,7 +461,7 @@ train_results = model.train(
 ```
 
 
-### 2.7 - Model Flow Summary
+### 3.7 - Model Flow Summary
 | Model Name | Dataset | Milestone | Misc. |
 |:-------:|:---------:|:---------:|:---------:|
 |  [Simple CNN](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/1st_Model/1st_model_CNN.ipynb)    | Duplicated O   | Milestone 3   | No fine tuning                  |
@@ -466,10 +472,10 @@ train_results = model.train(
 |  [VGG16](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/4th_Model/4th_model_VGG16%20(dataset_fixed).ipynb)         | Duplicated X   | Milestone 5   | Used best VGG16 version         |
 |  [EfficientNet](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet.ipynb)  | Duplicated O   | Milestone 5   | Different lr, optimization      |
 |  [EfficientNet](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/5th_Model/5th_model_efficientNet(dataset_fixed).ipynb)  | Duplicated X   | Milestone 5   | Used best EfficientNet version  |
-|  [YOLOv11](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11.ipynb)       | Smaller Duplicated X   | Milestone 5   | No fine tuning, used smaller dataset  |
+|  [YOLOv11](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11.ipynb)       | Smaller Duplicated X   | Milestone 5   | No fine tuning, used smaller dataset. This is NOT our final Model since this was for exploring/experiencing new Model which is popular among ML/DL programmer rather than using it for our improved version of model from previous Milstones; more details on last model will be covered in [Discussion](#5-discussion-on-models-methods--results) |
 
-## 3. Models Results (Best)
-### 3.1 - 1st Model (Simple CNN)
+## 4. Models Results (Best)
+### 4.1 - 1st Model (Simple CNN)
 <br>
    <table>
         <tr>
@@ -479,7 +485,7 @@ train_results = model.train(
    </table>
 Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of validation accuracy. 
 
-### 3.2 - 2nd Model (ResNet50_v1)
+### 4.2 - 2nd Model (ResNet50_v1)
 <br>
    <table>
         <tr>
@@ -490,8 +496,8 @@ Our first model (CNN Model) achieved 99.59% of training accuracy and 85.87% of v
 Our ResNet50_v1 Model achieved 99.53% of training accuracy and 97.26% of validation accuracy. 
 
 
-### 3.3 - 3rd Model (ResNet50_v2)
-#### 3.3.1 - New Codes to Predict S2E18 (Milestone 5)
+### 4.3 - 3rd Model (ResNet50_v2)
+#### 4.3.1 - New Codes to Predict S2E18 (Milestone 5)
 During Milestone 5, we tried to check the model performance on unseen data (not validation datset) from **S2E18**. We first set two folders: "frames_resized" and "frames_classified".
 1. "frames_resized" includes all the frames from S2E18 without classifying it into with_peter and without_peter.
 2. "frames_classified" includes two folders inside: "With_peter" and "Without_peter" which are classfied manually. 
@@ -547,9 +553,9 @@ print(accuracy)
 
 ```
 
-In addition to observing accuracy of model's prediction on unseen data using classified lists, we drew text which indicates the presence of Peter according to the Model's result on live video using java code - **[App.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App.java)** that uses [java.io.PrintWriter](https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html).
+In addition to observing accuracy of model's prediction on unseen data using classified lists, we wrote java code - **[App.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App.java)** - to create a bash script that can be used to generate the video. We drew text using [java.io.PrintWriter](https://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html), which indicates the presence of Peter according to the Model's result on live video with the bash script created.
 
- **[App_csv.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App_csv.java)** is diferent version of code which uses csv file of classified list instead of manually typing them inside the code. Example screenshots of video created by **App.java** are at below:
+ **[App_csv.java](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/App_csv.java)** is diferent version of code which uses csv file of classified list instead of manually typing them inside the code. Example screenshots of video generated by bash script from **App.java** are at below:
 
 <br>
    <table>
@@ -561,7 +567,7 @@ In addition to observing accuracy of model's prediction on unseen data using cla
 
 
 
-#### 3.3.2 - Initial Model (Milestone 4)
+#### 4.3.2 - Initial Model (Milestone 4)
 <br>
    <table>
         <tr>
@@ -617,7 +623,7 @@ False Negatives (FN): 13
 
 Lastly, we got 74.11% of accuracy on predicting S2E18 unseen episode. 
 
-#### 3.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
+#### 4.3.3 - Model Using Dataset After Duplicated Images Removal (Milestone 5)
 <br>
    <table>
         <tr>
@@ -638,8 +644,8 @@ False Negatives (FN): 17
 Lastly, we got 72.95% of accuracy on predicting S2E18 unseen episode. 
 
 
-### 3.4 - 4th Model (VGG16)
-#### 3.4.1 - Initial Model  (Milestone 4)
+### 4.4 - 4th Model (VGG16)
+#### 4.4.1 - Initial Model  (Milestone 4)
 <br>
    <table>
         <tr>
@@ -649,7 +655,7 @@ Lastly, we got 72.95% of accuracy on predicting S2E18 unseen episode.
    </table>
 Our Initial VGG16 model achieved 90.73% of training accuracy and 91.61% of validation accuracy.
 
-#### 3.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)
+#### 4.4.2 - Model using Dataset After Duplicated Images Removal (Milestone 5)
 <br>
    <table>
         <tr>
@@ -669,8 +675,8 @@ False Negatives (FN): 16
 
 Lastly, we got 76.72% of accuracy on predicting S2E18 unseen episode. 
 
-### 3.5 - 5th Model (EfficientNet)
-#### 3.3.1 - Initial Model (Milestone 5)
+### 4.5 - 5th Model (EfficientNet)
+#### 4.3.1 - Initial Model (Milestone 5)
 <br>
    <table>
         <tr>
@@ -691,7 +697,7 @@ False Negatives (FN): 33
 Lastly, we got 76.75% of accuracy on predicting S2E18 unseen episode. 
 
 
-#### 3.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)
+#### 4.3.2 - Model Using Dataset Afer Duplicated Images Removal (Milestone 5)
 <br>
    <table>
         <tr>
@@ -710,8 +716,8 @@ False Negatives (FN): 8
 ```
 Lastly, we got 84.31% of accuracy on predicting S2E18 unseen episode. 
 
-### 3.6 - 6th Model (YOLOv11)
-#### 3.6.1 - F1, PR, P, R curves
+### 4.6 - 6th Model (YOLOv11)
+#### 4.6.1 - F1, PR, P, R curves
 After running YOLOv11 model, it created F1, PR, P, and R curve for the model as the following:
 
 <br>
@@ -726,7 +732,7 @@ After running YOLOv11 model, it created F1, PR, P, and R curve for the model as 
     </tr>
     </table>
 
-#### 3.6.2 - Confusion Matrix
+#### 4.6.2 - Confusion Matrix
 We got confusion matrix (normalized & unnormalized) as the following:
 <br>
    <table>
@@ -736,7 +742,7 @@ We got confusion matrix (normalized & unnormalized) as the following:
         </tr>
    </table>
 
-#### 3.6.3 - Model Training Result
+#### 4.6.3 - Model Training Result
 The model's loss, precision, recall, and other metrics are in **[results.png](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/results.png)**:
 <br>
    <table>
@@ -745,7 +751,7 @@ The model's loss, precision, recall, and other metrics are in **[results.png](ht
         </tr>
    </table>
 
-#### 3.6.4 - Model's Prediciton on Validation Set and unseen data
+#### 4.6.4 - Model's Prediciton on Validation Set and unseen data
 <br>
    <table>
         <tr>
@@ -765,7 +771,7 @@ In addition, using **["6th_model_YOLOv11_4prediction.ipynb"](https://github.com/
    </table>
 It is considering Peter in images as Peter with 0.96 probability(confidence).
 
-#### 3.6.5 - Model's Prediction on Video (S2E18 unseen data)
+#### 4.6.5 - Model's Prediction on Video (S2E18 unseen data)
 Lastly, using **["6th_model_YOLOv11_video_prediction.ipynb"](https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/6th_Model/6th_model_YOLOv11_video_prediction.ipynb)**, we drew green box with Peter label to the frame where model predicts presence of Peter by higher than 0.5 threshold:
 ```python
 ...code snippets from  "6th_model_YOLOv11_video_prediction.ipynb"...
@@ -797,8 +803,10 @@ Unlike, the video that we created using **"App.java"** for ResNet model, the mod
 > <br> - ChatGPT - 
 
 
+## 5. Discussion on Model's Methods & Results
+### 5.1 - 1st Model (Simple CNN)
 
-
+### 5.2 - 2nd Model (ResNet)
 
 
 
