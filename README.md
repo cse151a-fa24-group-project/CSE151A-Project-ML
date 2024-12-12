@@ -1,4 +1,4 @@
-x<div align="center">
+<div align="center">
 <img width="100%" src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/banner_cse151a.png" alt="Main Banner">
 </div>
 
@@ -914,15 +914,15 @@ We can further expand model 6 to detect other characters in Family Guy; or apply
 ## 7. Statement of Collaboration
 **🌟 Team Contributions: The Magnificent Six 🌟**
 👥 Contributors
-Jacob Zhang jaz007@ucsd.edu
-Jaewon Han jah034@ucsd.edu
-Patric Sanchez p3sanchez@ucsd.edu
-Yoongon Kim ygk001@ucsd.edu
-Ruhua Pan oriiii932@gmail.com
-Hou Wan hwan@ucsd.edu
+1. Jacob Zhang jaz007@ucsd.edu
+2. Jaewon Han jah034@ucsd.edu
+3. Patric Sanchez p3sanchez@ucsd.edu
+4. Yoongon Kim ygk001@ucsd.edu
+5. Ruhua Pan oriiii932@gmail.com
+6. Hou Wan hwan@ucsd.edu
 
 <a href="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/graphs/contributors">
-<img width="500" src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/contributor_image.png">
+<img width="400" src="https://github.com/cse151a-fa24-group-project/CSE151A-Project-ML/blob/Milestone5/milestone5/assets/contributor_image.png">
 </a>
 
 # Milestone 4: Second Model
