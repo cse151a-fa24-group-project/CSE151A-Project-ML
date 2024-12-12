@@ -892,7 +892,7 @@ https://github.com/user-attachments/assets/11a220b3-340b-412a-92f8-82280ea2f443
 
 Issues like these are very tough to fix easily.
 
-The second common mistake is when the model constantly switches back and forth on whether Peter is there or not, when Peter is definitely present. A good example is when Peter first visits Mayor West’s office.
+The second common mistake is when the model constantly switches back and forth on whether Peter is there or not, when Peter is definitely present. Here is an example of that happening.
 
 
 https://github.com/user-attachments/assets/07b30a8d-b27f-45fd-a32e-71670e044cce
